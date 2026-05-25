@@ -1,129 +1,280 @@
-// --- VARIABLES: Conectamos JS con el HTML ---
-const splash = document.getElementById('pantalla-splash');
-const carga = document.getElementById('pantalla-carga');
+// --- VARIABLES DE SISTEMA: ZRC_STATION ---
+const pantalla_splash = document.getElementById('pantalla-splash');
+const pantalla_carga = document.getElementById('pantalla-carga');
 const escritorio = document.getElementById('escritorio');
 const gato = document.getElementById('contenedor-gato');
-const porcentajeTextoNum = document.getElementById('num-porcentaje');
 
-// Elementos del Módulo 2 (Carga)
-const progressBar = document.getElementById('progress-bar-fill');
-const alienLog = document.getElementById('alien-symbols-log');
+// Sincronización con los nuevos IDs del HTML
+const barra_progreso = document.getElementById('barra-progreso-carga');
+const log_sistema_nexo = document.getElementById('registro-nexo');
+const texto_porcentaje = document.getElementById('numero-porcentaje');
 
-// Variables para la ventana .txt
-const ventanaMensaje = document.getElementById('ventana-mensaje');
-const cerrarBtn = document.getElementById('cerrar-ventana');
-const textoAutor = document.getElementById('texto-autor');
+// Ventana de Mensaje
+const ventana_mensaje = document.getElementById('ventana-mensaje');
+const cerrar_boton = document.getElementById('cerrar-ventana');
+const texto_autor = document.getElementById('texto-autor');
 
-const mensajeAlien = `[ INIT_BIO_SCAN_Z ]\n⏣ ⎈ ⍎ ⍕ ⍙ ⍚ ⍛ ⍜\nasdkjao4569g flakjfgi adsjfbas...\n> TRADUCCIÓN FALLIDA.\n> zrc_root: acceso_concedido.`;
-const alienChars = "⏣⎈⍎⍕⍙⍚⍛⍜░▒▓█";
+const mensaje_alien = `[ INIT_BIO_SCAN_Z ]\n⏣ ⎈ ⍎ ⍕ ⍙ ⍚ ⍛ ⍜\nasdkjao4569g flakjfgi adsjfbas...\n> TRADUCCIÓN FALLIDA.\n> zrc_root: acceso_concedido.`;
 
-const lineasArranque = [
-    "NEPTUNE BIOS v9.9.X ... OK",
-    "Revisando memoria cuántica ... 64TB OK",
-    "Cargando drivers dimensionales ... OK",
-    "Conectando a la red ZRC_NEXUS ... ESTABLECIDO",
-    "Verificando integridad del núcleo ...",
-    "ADVERTENCIA: Anomalía detectada. Ignorando...",
-    "Montando sistema de archivos [████████████] 100%",
-    "Iniciando interfaz gráfica..."
+// --- MATRICES DE DATOS CAÓTICOS E INTERDIMENSIONALES ---
+const fragmentos_binarios = ["01101001", "10011110", "00001111", "11100001", "10101010", "01010101"];
+const bloques_unicode = ["⏣", "⎈", "⍎", "⍕", "⍙", "⍚", "⍛", "⍜", "░", "▒", "▓", "█", "ᛟ", "ᛖ", "ᚱ", "☣", "⚙", "⚡"];
+
+const sentencias_espanol = [
+    "S.O. VANGUARDIA: LOCALIZANDO PUNTO DE ANCLAJE EN EL UNIVERSO ORIGEN...",
+    "ESTABLECIENDO CONEXIÓN SECTOR_0X99 // CANAL ALTERNO ACTIVO.",
+    "RUIDO NECESARIO AÑADIDO PARA EVITAR COLAPSO DE LA LÍNEA TEMPORAL.",
+    "DESCOMPRIMIENDO PAQUETES: kernel-core-vanguardia-nodes...",
+    "SINCRONIZANDO CONSTANTES DE GRAVEDAD Y RELATIVIDAD LOCAL...",
+    "EXTRAYENDO REGISTROS HISTÓRICOS DEL SUB-NEXO KOBLET...",
+    "PROCESANDO FLUJO DE DATOS MULTIVERSAL ... INTEGRIDAD AL 94%",
+    "ALINEANDO REJILLA MAGNÉTICA DEL MONITOR DE TRANSMISIÓN...",
+    "CONECTANDO WITH SERVIDOR REMOTO: REALIDAD_PARALELA_BETA..."
 ];
 
-// --- PASO 1: El clic en el Gato ---
-let arrancando = false;
+function obtenerDatosCorruptos() {
+    let bloque = "";
+    const cantidad = Math.floor(Math.random() * 4) + 2;
+    for(let i = 0; i < cantidad; i++) {
+        if(Math.random() > 0.5) {
+            bloque += "0x" + Math.floor(Math.random()*255).toString(16).toUpperCase() + " ";
+        } else {
+            bloque += bloques_unicode[Math.floor(Math.random() * bloques_unicode.length)] + " ";
+        }
+    }
+    return bloque;
+}
+
+// --- SECUENCIA DE INICIO ---
+let sistema_iniciando = false;
 
 gato.addEventListener('click', () => {
-    if (arrancando) return;
-    arrancando = true;
+    if (sistema_iniciando) return;
+    sistema_iniciando = true;
 
-    splash.style.opacity = '0';
+    // --- PARCHE CONTRALÍNEAS INTEGRADO ---
+    // Fuerza al body a volverse negro absoluto al instante del clic.
+    // Esto oculta el color blanco por defecto del navegador y elimina el destello o línea blanca.
+    document.body.style.backgroundColor = '#010401';
+
+    pantalla_splash.style.opacity = '0';
     setTimeout(() => {
-        splash.style.display = 'none';
-        carga.style.display = 'flex';
-        iniciarArranqueAlien();
+        pantalla_splash.style.display = 'none';
+        pantalla_carga.style.display = 'flex';
+        iniciar_secuencia_acoplamiento();
     }, 500);
 });
 
-// --- PASO 2: Secuencia de Arranque ---
-function iniciarArranqueAlien() {
+// --- LÓGICA DE ARRANQUE "DENSE LINUX BOOT" ---
+function iniciar_secuencia_acoplamiento() {
     let progreso = 0;
-    let lineaActual = 0;
-    alienLog.innerHTML = ''; 
+    let error_provocado = false;
+    let error_resuelto = false;
+    let bucle_logs_activo = false; 
+    
+    log_sistema_nexo.innerHTML = '> ENLACE INTERCEPTADO EN EL UMBRAL DIMENSIONAL <span id="cursor-analogico">_</span>'; 
+    const monitor_crt = document.querySelector('.contenedor-terminal-crt');
 
-    const intervaloLineas = setInterval(() => {
-        progreso += Math.floor(Math.random() * 10) + 2;
-        if (progreso > 100) progreso = 100;
+    let ciclos_parpadeo = 0;
+    const secuencia_cursor = setInterval(() => {
+        const cursor = document.getElementById('cursor-analogico');
+        if (cursor) {
+            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+        }
+        ciclos_parpadeo++;
+
+        if (ciclos_parpadeo >= 6) {
+            clearInterval(secuencia_cursor);
+            log_sistema_nexo.innerHTML = '> INICIALIZANDO APILAMIENTO DE PAQUETES DE S.O. VANGUARDIA...<br>';
+            bucle_logs_activo = true;
+            
+            procesarLluviaDeCodigos();
+            ejecutarProgresoBarra();
+        }
+    }, 200);
+
+    // 1. CONTROL DE LA BARRA DE PROGRESO
+    function ejecutarProgresoBarra() {
+        const ciclo_carga = setInterval(() => {
+            if (error_provocado && !error_resuelto) return;
+
+            progreso += Math.floor(Math.random() * 3) + 1;
+            if (progreso > 100) progreso = 100;
+            
+            texto_porcentaje.innerText = progreso;
+            barra_progreso.style.width = progreso + "%";
+
+            if (progreso >= 45 && !error_provocado) {
+                error_provocado = true;
+                provocarFalloDimensional();
+            }
+
+            if (progreso >= 100) {
+                clearInterval(ciclo_carga);
+                bucle_logs_activo = false; 
+                
+                monitor_crt.style.transform = 'translate(0, 0) skew(0deg)';
+                monitor_crt.style.filter = 'none';
+
+                log_sistema_nexo.innerHTML += "<br><span style='color: #ffffff; font-weight: bold; text-shadow: 0 0 8px #33ff66;'>> [ ENLACE CON INTERFAZ VANGUARDIA COMPLETADO CON ÉXITO ]</span>";
+                log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
+
+                const emblema = document.querySelector('.emblema-nexo');
+                emblema.style.transition = 'all 0.15s ease-in-out';
+                
+                // --- NUEVA CRONOLOGÍA DE TRIPLE PARPADEO CALIBRADO ---
+                
+                // [PRIMER PARPADEO]: Normal y espaciado
+                setTimeout(() => {
+                    emblema.style.filter = 'drop-shadow(0 0 15px #33ff66) brightness(1.8)';
+                    emblema.style.transform = 'scale(1.06)';
+                }, 400);
+
+                // Apagado del primer parpadeo
+                setTimeout(() => {
+                    emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
+                    emblema.style.transform = 'scale(1)';
+                }, 600);
+
+                // [SEGUNDO PARPADEO]: Espera prolongada y brilla más fuerte
+                setTimeout(() => {
+                    emblema.style.filter = 'drop-shadow(0 0 35px #33ff66) brightness(3)';
+                    emblema.style.transform = 'scale(1.15)';
+                }, 1200);
+
+                // Apagado del segundo parpadeo
+                setTimeout(() => {
+                    emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
+                    emblema.style.transform = 'scale(1)';
+                }, 1450);
+
+                // [TERCER PARPADEO]: Detonación de fósforo blanco total
+                setTimeout(() => {
+                    emblema.style.filter = 'brightness(10)';
+                    emblema.style.transform = 'scale(1.3)';
+                    
+                    monitor_crt.style.transition = 'background 0.1s ease-in-out';
+                    monitor_crt.style.background = '#ffffff';
+                }, 2100);
+
+                // Desvanecimiento controlado desde el blanco absoluto hacia el escritorio
+                setTimeout(() => {
+                    revelar_escritorio();
+                }, 2350); 
+            }
+        }, 180);
+    }
+
+    // 2. TORMENTA DE LOGS DINÁMICOS ASÍNCRONOS
+    function procesarLluviaDeCodigos() {
+        if (!bucle_logs_activo) return;
+        if (error_provocado && !error_resuelto) {
+            setTimeout(procesarLluviaDeCodigos, 200);
+            return;
+        }
+
+        let delay = 30; 
+        let dados = Math.random();
+        let string_inyectar = "";
+
+        if (dados > 0.90) {
+            string_inyectar = `<span style="color: #33ff66;">> ${sentencias_espanol[Math.floor(Math.random() * sentencias_espanol.length)]}</span>`;
+            delay = 450;
+        } else if (dados > 0.65) {
+            string_inyectar = `<span style="opacity: 0.3;">DESCARGANDO: pkg/vanguardia-core-${fragmentos_binarios[Math.floor(Math.random() * fragmentos_binarios.length)]} [${obtenerDatosCorruptos()}]</span>`;
+            delay = 12;
+        } else if (dados > 0.40) {
+            string_inyectar = `<span style="opacity: 0.6;">M_DUMP [0x${Math.floor(Math.random()*16384).toString(16).toUpperCase()}]: ${obtenerDatosCorruptos()} ${obtenerDatosCorruptos()}</span>`;
+            delay = 80;
+        } else {
+            string_inyectar = `<span style="opacity: 0.5;">> comp_node_status: ${obtenerDatosCorruptos()} ... OK</span>`;
+            delay = 40;
+        }
+
+        log_sistema_nexo.innerHTML += string_inyectar + "<br>";
+        log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
+
+        setTimeout(procesarLluviaDeCodigos, delay);
+    }
+
+    // 3. SECUENCIA DEL ERROR
+    function provocarFalloDimensional() {
+        monitor_crt.style.transform = "translate(7px, -5px) skew(4deg)";
+        monitor_crt.style.filter = "brightness(2) blur(1px)";
         
-        porcentajeTextoNum.innerText = progreso;
-        progressBar.style.width = progreso + "%";
-        alienLog.innerHTML += alienChars.charAt(Math.floor(Math.random() * alienChars.length));
+        log_sistema_nexo.innerHTML += `<br><span style="color: #ff3333; font-weight: bold; text-shadow: 0 0 8px #ff3333;">[ERROR_CRÍTICO]: ALINEACIÓN DE DISPOSITIVOS FALLIDA</span><br>`;
+        log_sistema_nexo.innerHTML += `<span style="color: #ff3333; opacity: 0.8;">[ALERTA]: ADVERTENCIA DE RUPTURA DE NEXO ENTRE UNIVERSOS (CÓDIGO_TRANS_0xFA)</span><br>`;
+        log_sistema_nexo.innerHTML += `<span style="color: #ff3333; opacity: 0.6;">> VOLCADO DE EMERGENCIA: ${obtenerDatosCorruptos()} ${obtenerDatosCorruptos()}</span><br>`;
+        log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
 
-        if (progreso % 20 === 0 && lineaActual < lineasArranque.length) {
-            alienLog.innerHTML += "<br>> " + lineasArranque[lineaActual] + "<br>";
-            lineaActual++;
-        }
-
-        if (progreso >= 100) {
-            clearInterval(intervaloLineas);
-            alienLog.innerHTML += "<br>> ZRC_OS CARGADO.";
-            setTimeout(revelarEscritorio, 1000);
-        }
-    }, 250);
+        setTimeout(() => {
+            log_sistema_nexo.innerHTML += `<span style="color: #ffffff;">> INTERCEPCIÓN DE CONTROL: APLICANDO PARCHE AL VUELO EN NÚCLEO...</span><br>`;
+            log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
+            monitor_crt.style.transform = "translate(-4px, 4px) skew(-2deg)";
+            
+            setTimeout(() => {
+                monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
+                monitor_crt.style.filter = "none";
+                
+                log_sistema_nexo.innerHTML += `<span style="color: #33ff66; font-weight: bold;">> [PARCHE APLICADO]: SECTORES CUÁNTICOS REDIRECCIONADOS CON ÉXITO. RESUELTO.</span><br>`;
+                log_sistema_nexo.innerHTML += `<span style="color: #33ff66; opacity: 0.7;">> REANUDANDO INSTALACIÓN DEL REPOSITORIO VANGUARDIA...</span><br><br>`;
+                log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
+                
+                error_resuelto = true;
+            }, 900);
+        }, 800);
+    }
 }
 
-// --- PASO 3: Revelar Escritorio (Fundido) ---
-function revelarEscritorio() {
-    carga.style.opacity = '0';
+// --- TRANSICIÓN SUAVE DESDE BLANCO ABSOLUTO AL ESCRITORIO ---
+function revelar_escritorio() {
+    pantalla_carga.style.transition = 'opacity 0.6s cubic-bezier(0.1, 0.8, 0.25, 1)';
+    pantalla_carga.style.opacity = '0';
+    
     setTimeout(() => {
-        carga.style.display = 'none';
+        pantalla_carga.style.display = 'none';
         escritorio.style.display = 'block';
+        
         setTimeout(() => {
             escritorio.style.opacity = '1';
             escritorio.style.pointerEvents = 'auto';
-        }, 100);
-    }, 1500);
+        }, 50);
+    }, 600); 
 }
 
-// --- PASO 4: Interacción (Despertar mensaje en el escritorio) ---
+// --- VENTANA DE ESCRITORIO ---
 escritorio.addEventListener('click', (e) => {
-    // Si se hace click en el fondo del escritorio (y no en una ventana/carpeta)
     if (e.target.id === 'escritorio') {
-        if (ventanaMensaje.style.display !== 'block') {
-            ventanaMensaje.style.display = 'block';
-            textoAutor.innerHTML = ''; 
-            escribirEfectoMaquina(0);
+        if (ventana_mensaje.style.display !== 'block') {
+            ventana_mensaje.style.display = 'block';
+            texto_autor.innerHTML = ''; 
+            maquina_escribir(0);
         }
     }
 });
 
-// --- PASO 5: Máquina de Escribir ---
-function escribirEfectoMaquina(indice) {
-    if (indice < mensajeAlien.length) {
-        let caracter = mensajeAlien.charAt(indice);
-        textoAutor.innerHTML += (caracter === '\n') ? '<br>' : caracter;
-        setTimeout(() => escribirEfectoMaquina(indice + 1), 40);
+function maquina_escribir(indice) {
+    if (indice < mensaje_alien.length) {
+        let caracter = mensaje_alien.charAt(indice);
+        texto_autor.innerHTML += (caracter === '\n') ? '<br>' : caracter;
+        setTimeout(() => maquina_escribir(indice + 1), 40);
     }
 }
 
-// --- PASO 6: Cerrar ventana ---
-if (cerrarBtn) {
-    cerrarBtn.addEventListener('click', (e) => {
+if (cerrar_boton) {
+    cerrar_boton.addEventListener('click', (e) => {
         e.stopPropagation(); 
-        ventanaMensaje.style.display = 'none';
+        ventana_mensaje.style.display = 'none';
     });
 }
-// --- INTERACCIÓN: Despertar al Gato al pasar el mouse ---
-const btnSincronizar = document.getElementById('btn-sincronizar');
-const ojosGato = document.querySelector('.pixel-cat');
 
-if (btnSincronizar) {
-    btnSincronizar.addEventListener('mouseenter', () => {
-        // Añadimos la clase que dispara el parpadeo
-        ojosGato.classList.add('blink-trigger');
-        
-        // Removemos la clase después de 0.6s (lo que dura la animación) 
-        // para que se pueda volver a disparar la próxima vez
-        setTimeout(() => {
-            ojosGato.classList.remove('blink-trigger');
-        }, 600);
+// --- SENSOR DE PARPADEO GATO ---
+const boton_sincronizar = document.getElementById('btn-sincronizar');
+const ojos_gato = document.querySelector('.pixel-cat');
+
+if (boton_sincronizar) {
+    boton_sincronizar.addEventListener('mouseenter', () => {
+        ojos_gato.classList.add('blink-trigger');
+        setTimeout(() => ojos_gato.classList.remove('blink-trigger'), 600);
     });
 }
