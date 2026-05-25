@@ -2,11 +2,17 @@
    MÓDULO 1: ESTADO SPLASH (PORTADA)
 ========================================= */
 #pantalla-splash {
-    height: 100vh; width: 100vw;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    background-color: #ffffff; position: relative;
+    /* Cambiamos height: 100vh por 100dvh para que sea robusto en móviles */
+    height: 100dvh; 
+    width: 100vw;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    background-color: #ffffff; 
+    position: relative;
     transition: opacity 0.5s ease;
+    overflow: hidden; /* Esto evita que los elementos se desborden */
 }
 
 .marcador-borde {
