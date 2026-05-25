@@ -31,6 +31,7 @@
 }
 #contenedor-gato:hover { transform: scale(1.1); }
 
+/* --- EL GATO (CUERPO) --- */
 .pixel-cat {
     width: 10px; height: 10px; background: transparent;
     box-shadow: 
@@ -41,12 +42,34 @@
         20px 50px #000, 30px 50px #000, 40px 50px #000, 50px 50px #000;
     margin-bottom: 70px; margin-right: 60px; position: relative; 
 }
-.pixel-cat::after {
-    content: ''; position: absolute; width: 10px; height: 10px;
-    box-shadow: 20px 30px #00FF41, 50px 30px #00FF41; 
-    animation: parpadeo-ojos 3s infinite; 
+
+/* --- LOS OJOS (SEPARADOS) --- */
+.pixel-cat::before, .pixel-cat::after {
+    content: ''; position: absolute; 
+    width: 10px; height: 10px;
+    background: #00FF41;
+    top: 30px; /* Misma posición que antes */
+    animation: parpadeo-ojos 4s infinite;
+    transform-origin: center;
 }
-@keyframes parpadeo-ojos { 0%, 90%, 100% { opacity: 1; } 95% { opacity: 0; } }
+.pixel-cat::before { left: 20px; } /* Ojo izquierdo */
+.pixel-cat::after  { left: 50px; } /* Ojo derecho */
+
+/* Parpadeo normal */
+@keyframes parpadeo-ojos { 
+    0%, 90%, 100% { opacity: 1; transform: scaleY(1); } 
+    95% { opacity: 0; transform: scaleY(1); } 
+}
+
+/* Animación de "Entrecerrar" al pasar mouse */
+@keyframes entrecerrar-ojos {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.2); opacity: 1; }
+}
+
+.blink-trigger::before, .blink-trigger::after {
+    animation: entrecerrar-ojos 0.6s ease-in-out !important;
+}
 
 .apodo { font-weight: bold; letter-spacing: 2px; color: #333; margin-top: 0; }
 .instruccion { 
@@ -56,20 +79,17 @@
 @keyframes parpadeo-suave { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
 /* =========================================
-   MÓDULO 2: ESTADO CARGA (NEPTUNE SYSTEMS)
+   MÓDULO 2: ESTADO CARGA
 ========================================= */
 #pantalla-carga {
     height: 100vh; width: 100vw;
     background-color: #000000; color: #00FF41;
-    display: none;
-    flex-direction: column;
+    display: none; flex-direction: column;
     justify-content: center; align-items: center;
     position: absolute; top: 0; left: 0; z-index: 999;
 }
 
-#contenedor-hacker-load {
-    display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 5;
-}
+#contenedor-hacker-load { display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 5; }
 
 .title-alien { 
     letter-spacing: 2px; font-size: 0.9em; 
@@ -81,24 +101,19 @@
     width: 300px; height: 25px; border: 2px solid #00FF41;
     margin: 20px 0; padding: 2px; display: flex; align-items: center;
 }
-#progress-bar-fill {
-    height: 100%; width: 0%; background-color: #00FF41;
-    box-shadow: 0 0 10px #00FF41;
-}
+#progress-bar-fill { height: 100%; width: 0%; background-color: #00FF41; box-shadow: 0 0 10px #00FF41; }
 
 #alien-symbols-log {
     width: 300px; height: 60px;
     margin-top: 10px; font-family: monospace;
     font-size: 0.8em; color: rgba(0, 255, 65, 0.6);
     overflow: hidden; text-align: left;
-    word-wrap: break-word;
 }
 
 .monitor-screen-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: 
-        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
     background-size: 100% 3px, 3px 100%;
     pointer-events: none; z-index: 100;
 }
@@ -108,12 +123,8 @@
 ========================================= */
 #escritorio { 
     background-color: #008080; height: 100vh; width: 100vw; padding: 20px; 
-    position: relative; 
-    opacity: 0; 
-    transition: opacity 2s ease-in-out; 
-    pointer-events: none; 
+    position: relative; opacity: 0; transition: opacity 2s ease-in-out; pointer-events: none; 
 }
-
 #contenedor-iconos { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 30px; margin-top: 50px; }
 .nodo-carpeta { display: flex; flex-direction: column; align-items: center; color: white; cursor: pointer; text-align: center; }
 .nodo-carpeta span { margin-top: 10px; font-family: 'Courier New', monospace; font-size: 0.9em; padding: 2px 5px; }
@@ -132,13 +143,3 @@
 #cerrar-ventana { background: #c0c0c0; border-top: 1px solid #fff; border-left: 1px solid #fff; border-right: 1px solid #000; border-bottom: 1px solid #000; font-weight: bold; cursor: pointer; padding: 2px 6px; }
 #cerrar-ventana:active { border: inset 2px; }
 .cuerpo-ventana { padding: 20px; margin: 2px; }
-/* Animación para el doble parpadeo */
-@keyframes parpadeo-doble {
-    0%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0; }
-}
-
-/* Clase que aplicaremos con JS para que parpadee dos veces */
-.blink-trigger::after {
-    animation: parpadeo-doble 0.6s ease-in-out !important;
-}
