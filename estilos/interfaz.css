@@ -1,0 +1,46 @@
+/* =========================================
+   CONDUCTO VISUAL: INTERFAZ DE LA TERMINAL
+========================================= */
+
+#contenedor-maestro {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-zarco-vacio);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de escaneo (Degradación del puente cuántico) */
+#contenedor-maestro::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    z-index: 2;
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+
+/* Caja principal de los datos inyectados */
+#punto-inyeccion-nucleo {
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estructura base para las ventanas del sistema */
+.ventana-sistema {
+    border: 2px solid var(--color-energia-hesra);
+    padding: 40px;
+    background-color: rgba(0, 20, 20, 0.9);
+    box-shadow: var(--resplandor-radiactivo);
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+    color: var(--color-gaia-superficie);
+}
