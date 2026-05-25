@@ -24,29 +24,49 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
         
-        // Conectamos el sensor de clic al botón
         const botonEnlace = document.getElementById("boton-enlace");
         botonEnlace.addEventListener("click", () => {
-            cargarEscritorio(); // Al hacer clic, disparamos la Fase 2
+            cargarEscritorio(); 
         });
     }
 
-    // ESTADO 2: El Escritorio Principal (El interior del sistema)
+    // ESTADO 2: El Escritorio Principal y la Barra de Estado
     function cargarEscritorio() {
-        // Expandimos la ventana para que ocupe casi toda la pantalla
         puntoInyeccion.innerHTML = `
-            <div class="ventana-sistema" style="width: 95vw; height: 90vh; max-width: none; display: flex; flex-direction: column;">
-                <h2 class="texto-fluido-zarco" style="text-align: left; border-bottom: 1px solid var(--color-energia-hesra); padding-bottom: 10px;">
-                    ESCRITORIO ZARCO // NIVEL DE ACCESO: OPERADOR
-                </h2>
+            <div class="contenedor-escritorio">
+                <div class="barra-estado">
+                    <span>ZRC-OS // NEXO PRINCIPAL</span>
+                    <span id="reloj-sistema">00:00:00</span>
+                    <span>RED: ESTABLE</span>
+                </div>
                 
-                <div style="flex-grow: 1; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                    <p>Bienvenido al nexo principal. El entorno está vacío.</p>
-                    <p style="color: var(--color-texto-muerto);">Esperando despliegue de nodos y archivos interceptados...</p>
+                <div class="area-trabajo">
+                    <h2 class="texto-fluido-zarco" style="text-align: left; border-bottom: 1px solid var(--color-energia-hesra); padding-bottom: 10px; margin-top: 0;">
+                        ACCESO: OPERADOR
+                    </h2>
+                    
+                    <div style="height: 70%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <p>Bienvenido al nexo principal. El entorno está vacío.</p>
+                        <p style="color: var(--color-texto-muerto);">Esperando despliegue de nodos y archivos interceptados...</p>
+                    </div>
                 </div>
             </div>
         `;
-        console.log("Sistema Base Zarco: Enlace establecido. Escritorio cargado.");
+        
+        iniciarReloj(); // Encendemos el motor del tiempo
+        console.log("Sistema Base Zarco: Escritorio cargado con barra de estado.");
+    }
+
+    // Función para dar vida al reloj
+    function iniciarReloj() {
+        const visorReloj = document.getElementById("reloj-sistema");
+        
+        // Actualizamos la hora cada 1000 milisegundos (1 segundo)
+        setInterval(() => {
+            const tiempoActual = new Date();
+            // Formateamos para que muestre Horas:Minutos:Segundos
+            visorReloj.textContent = tiempoActual.toLocaleTimeString('es-ES'); 
+        }, 1000);
     }
 
     // Disparamos la secuencia inicial

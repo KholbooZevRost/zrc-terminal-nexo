@@ -78,3 +78,39 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
 }
+/* =========================================
+   ENTORNO DE ESCRITORIO
+========================================= */
+
+/* Estructura del nuevo Escritorio Zarco */
+.contenedor-escritorio {
+    width: 95vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 20, 20, 0.9);
+    border: 2px solid var(--color-energia-hesra);
+    box-shadow: var(--resplandor-radiactivo);
+    overflow: hidden;
+}
+
+/* Barra Superior de Estado */
+.barra-estado {
+    width: 100%;
+    background-color: var(--color-energia-hesra);
+    color: var(--color-zarco-vacio);
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--color-gaia-superficie);
+}
+
+/* Área donde irán las carpetas en el futuro */
+.area-trabajo {
+    flex-grow: 1;
+    padding: 20px;
+    color: var(--color-gaia-superficie);
+    position: relative;
+}
