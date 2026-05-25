@@ -44,3 +44,37 @@
     width: 90%;
     color: var(--color-gaia-superficie);
 }
+/* =========================================
+   ELEMENTOS INTERACTIVOS
+========================================= */
+
+/* Botón de Interacción del Operador */
+.boton-terminal {
+    background-color: transparent;
+    color: var(--color-energia-hesra);
+    border: 1px solid var(--color-energia-hesra);
+    padding: 10px 20px;
+    font-family: var(--fuente-terminal);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* Reacción al pasar el ratón (Hover) */
+.boton-terminal:hover {
+    background-color: var(--color-energia-hesra);
+    color: var(--color-zarco-vacio);
+    box-shadow: var(--resplandor-radiactivo);
+}
+
+/* Animación de latido/parpadeo para llamar la atención */
+.parpadeo {
+    animation: parpadeo-animacion 1.5s infinite;
+}
+
+@keyframes parpadeo-animacion {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
