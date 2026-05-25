@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ESTADO 2: El Escritorio Principal y la Barra de Estado
+   // ESTADO 2: El Escritorio Principal y la Barra de Estado
     function cargarEscritorio() {
         puntoInyeccion.innerHTML = `
             <div class="contenedor-escritorio">
@@ -45,18 +45,27 @@ document.addEventListener("DOMContentLoaded", () => {
                         ACCESO: OPERADOR
                     </h2>
                     
-                    <div style="height: 70%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                        <p>Bienvenido al nexo principal. El entorno está vacío.</p>
-                        <p style="color: var(--color-texto-muerto);">Esperando despliegue de nodos y archivos interceptados...</p>
+                    <div class="contenedor-iconos">
+                        
+                        <div class="icono-sistema" id="nodo-archivos">
+                            <div class="icono-grafico">[_]</div>
+                            <div class="icono-texto">DATOS_G7</div>
+                        </div>
+
+                        <div class="icono-sistema" id="nodo-katt-log">
+                            <div class="icono-grafico">[≡]</div>
+                            <div class="icono-texto">KATT.log</div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         `;
         
-        iniciarReloj(); // Encendemos el motor del tiempo
-        console.log("Sistema Base Zarco: Escritorio cargado con barra de estado.");
+        iniciarReloj(); 
+        console.log("Sistema Base Zarco: Nodos de datos inyectados.");
     }
-
+    
     // Función para dar vida al reloj
     function iniciarReloj() {
         const visorReloj = document.getElementById("reloj-sistema");

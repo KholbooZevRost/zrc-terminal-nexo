@@ -114,3 +114,54 @@
     color: var(--color-gaia-superficie);
     position: relative;
 }
+/* =========================================
+   NODOS DE DATOS (ÍCONOS DEL ESCRITORIO)
+========================================= */
+
+.contenedor-iconos {
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.icono-sistema {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+/* Reacción al pasar el escáner (ratón) por encima */
+.icono-sistema:hover {
+    transform: scale(1.1);
+}
+
+.icono-sistema:hover .icono-grafico {
+    color: var(--color-energia-hesra);
+    text-shadow: var(--resplandor-radiactivo);
+}
+
+.icono-sistema:hover .icono-texto {
+    background-color: var(--color-energia-hesra);
+    color: var(--color-zarco-vacio);
+}
+
+.icono-grafico {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    color: var(--color-gaia-superficie);
+    font-weight: bold;
+}
+
+.icono-texto {
+    font-size: 0.85rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 4px 8px;
+    border: 1px solid var(--color-texto-muerto);
+    word-wrap: break-word;
+    width: 100%;
+}
