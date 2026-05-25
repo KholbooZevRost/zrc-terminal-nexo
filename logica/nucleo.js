@@ -1,83 +1,129 @@
-/* =========================================
-   NÚCLEO ORQUESTADOR: CEREBRO DE LA TERMINAL
-========================================= */
+// --- VARIABLES: Conectamos JS con el HTML ---
+const splash = document.getElementById('pantalla-splash');
+const carga = document.getElementById('pantalla-carga');
+const escritorio = document.getElementById('escritorio');
+const gato = document.getElementById('contenedor-gato');
+const porcentajeTextoNum = document.getElementById('num-porcentaje');
 
-document.addEventListener("DOMContentLoaded", () => {
-    const puntoInyeccion = document.getElementById("punto-inyeccion-nucleo");
-    
-    // ESTADO 1: Pantalla de Arranque
-    function iniciarTerminal() {
-        puntoInyeccion.innerHTML = `
-            <div class="ventana-sistema">
-                <h1 class="texto-fluido-zarco">NEXO G7 // ESTADO: EN LÍNEA</h1>
-                <p>El núcleo lógico ha sido sincronizado.</p>
-                <hr style="border-color: var(--color-energia-hesra); margin: 20px 0;">
-                
-                <pre class="texto-fluido-zarco" style="font-size: 1.5rem; line-height: 1.1; margin: 20px 0;">
-   /\\_/\\  
-  ( o.o ) 
-   > ^ <  
-                </pre>
-                <p>Entidad KATT vinculada con éxito.</p>
-                
-                <button id="boton-enlace" class="boton-terminal parpadeo">[ INICIAR ENLACE ]</button>
-            </div>
-        `;
-        
-        const botonEnlace = document.getElementById("boton-enlace");
-        botonEnlace.addEventListener("click", () => {
-            cargarEscritorio(); 
-        });
-    }
+// Elementos del Módulo 2 (Carga)
+const progressBar = document.getElementById('progress-bar-fill');
+const alienLog = document.getElementById('alien-symbols-log');
 
-   // ESTADO 2: El Escritorio Principal y la Barra de Estado
-    function cargarEscritorio() {
-        puntoInyeccion.innerHTML = `
-            <div class="contenedor-escritorio">
-                <div class="barra-estado">
-                    <span>ZRC-OS // NEXO PRINCIPAL</span>
-                    <span id="reloj-sistema">00:00:00</span>
-                    <span>RED: ESTABLE</span>
-                </div>
-                
-                <div class="area-trabajo">
-                    <h2 class="texto-fluido-zarco" style="text-align: left; border-bottom: 1px solid var(--color-energia-hesra); padding-bottom: 10px; margin-top: 0;">
-                        ACCESO: OPERADOR
-                    </h2>
-                    
-                    <div class="contenedor-iconos">
-                        
-                        <div class="icono-sistema" id="nodo-archivos">
-                            <div class="icono-grafico">[_]</div>
-                            <div class="icono-texto">DATOS_G7</div>
-                        </div>
+// Variables para la ventana .txt
+const ventanaMensaje = document.getElementById('ventana-mensaje');
+const cerrarBtn = document.getElementById('cerrar-ventana');
+const textoAutor = document.getElementById('texto-autor');
 
-                        <div class="icono-sistema" id="nodo-katt-log">
-                            <div class="icono-grafico">[≡]</div>
-                            <div class="icono-texto">KATT.log</div>
-                        </div>
+const mensajeAlien = `[ INIT_BIO_SCAN_Z ]\n⏣ ⎈ ⍎ ⍕ ⍙ ⍚ ⍛ ⍜\nasdkjao4569g flakjfgi adsjfbas...\n> TRADUCCIÓN FALLIDA.\n> zrc_root: acceso_concedido.`;
+const alienChars = "⏣⎈⍎⍕⍙⍚⍛⍜░▒▓█";
 
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        iniciarReloj(); 
-        console.log("Sistema Base Zarco: Nodos de datos inyectados.");
-    }
-    
-    // Función para dar vida al reloj
-    function iniciarReloj() {
-        const visorReloj = document.getElementById("reloj-sistema");
-        
-        // Actualizamos la hora cada 1000 milisegundos (1 segundo)
-        setInterval(() => {
-            const tiempoActual = new Date();
-            // Formateamos para que muestre Horas:Minutos:Segundos
-            visorReloj.textContent = tiempoActual.toLocaleTimeString('es-ES'); 
-        }, 1000);
-    }
+const lineasArranque = [
+    "NEPTUNE BIOS v9.9.X ... OK",
+    "Revisando memoria cuántica ... 64TB OK",
+    "Cargando drivers dimensionales ... OK",
+    "Conectando a la red ZRC_NEXUS ... ESTABLECIDO",
+    "Verificando integridad del núcleo ...",
+    "ADVERTENCIA: Anomalía detectada. Ignorando...",
+    "Montando sistema de archivos [████████████] 100%",
+    "Iniciando interfaz gráfica..."
+];
 
-    // Disparamos la secuencia inicial
-    iniciarTerminal();
+// --- PASO 1: El clic en el Gato ---
+let arrancando = false;
+
+gato.addEventListener('click', () => {
+    if (arrancando) return;
+    arrancando = true;
+
+    splash.style.opacity = '0';
+    setTimeout(() => {
+        splash.style.display = 'none';
+        carga.style.display = 'flex';
+        iniciarArranqueAlien();
+    }, 500);
 });
+
+// --- PASO 2: Secuencia de Arranque ---
+function iniciarArranqueAlien() {
+    let progreso = 0;
+    let lineaActual = 0;
+    alienLog.innerHTML = ''; 
+
+    const intervaloLineas = setInterval(() => {
+        progreso += Math.floor(Math.random() * 10) + 2;
+        if (progreso > 100) progreso = 100;
+        
+        porcentajeTextoNum.innerText = progreso;
+        progressBar.style.width = progreso + "%";
+        alienLog.innerHTML += alienChars.charAt(Math.floor(Math.random() * alienChars.length));
+
+        if (progreso % 20 === 0 && lineaActual < lineasArranque.length) {
+            alienLog.innerHTML += "<br>> " + lineasArranque[lineaActual] + "<br>";
+            lineaActual++;
+        }
+
+        if (progreso >= 100) {
+            clearInterval(intervaloLineas);
+            alienLog.innerHTML += "<br>> ZRC_OS CARGADO.";
+            setTimeout(revelarEscritorio, 1000);
+        }
+    }, 250);
+}
+
+// --- PASO 3: Revelar Escritorio (Fundido) ---
+function revelarEscritorio() {
+    carga.style.opacity = '0';
+    setTimeout(() => {
+        carga.style.display = 'none';
+        escritorio.style.display = 'block';
+        setTimeout(() => {
+            escritorio.style.opacity = '1';
+            escritorio.style.pointerEvents = 'auto';
+        }, 100);
+    }, 1500);
+}
+
+// --- PASO 4: Interacción (Despertar mensaje en el escritorio) ---
+escritorio.addEventListener('click', (e) => {
+    // Si se hace click en el fondo del escritorio (y no en una ventana/carpeta)
+    if (e.target.id === 'escritorio') {
+        if (ventanaMensaje.style.display !== 'block') {
+            ventanaMensaje.style.display = 'block';
+            textoAutor.innerHTML = ''; 
+            escribirEfectoMaquina(0);
+        }
+    }
+});
+
+// --- PASO 5: Máquina de Escribir ---
+function escribirEfectoMaquina(indice) {
+    if (indice < mensajeAlien.length) {
+        let caracter = mensajeAlien.charAt(indice);
+        textoAutor.innerHTML += (caracter === '\n') ? '<br>' : caracter;
+        setTimeout(() => escribirEfectoMaquina(indice + 1), 40);
+    }
+}
+
+// --- PASO 6: Cerrar ventana ---
+if (cerrarBtn) {
+    cerrarBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        ventanaMensaje.style.display = 'none';
+    });
+}
+// --- INTERACCIÓN: Despertar al Gato al pasar el mouse ---
+const btnSincronizar = document.getElementById('btn-sincronizar');
+const ojosGato = document.querySelector('.pixel-cat');
+
+if (btnSincronizar) {
+    btnSincronizar.addEventListener('mouseenter', () => {
+        // Añadimos la clase que dispara el parpadeo
+        ojosGato.classList.add('blink-trigger');
+        
+        // Removemos la clase después de 0.6s (lo que dura la animación) 
+        // para que se pueda volver a disparar la próxima vez
+        setTimeout(() => {
+            ojosGato.classList.remove('blink-trigger');
+        }, 600);
+    });
+}

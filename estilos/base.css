@@ -1,38 +1,20 @@
 /* =========================================
-   NODO BASE: LEYES FÍSICAS DE LA TERMINAL
+   MÓDULO 0: CONFIGURACIÓN GLOBAL
 ========================================= */
-:root {
-    --color-gaia-superficie: #f0f0f0;
-    --color-zarco-vacio: #000000;
-    --color-zarco-nexo: #008080;
-    --color-energia-hesra: #00FF41;
-    --color-texto-muerto: #777777;
-    
-    --fuente-terminal: 'Courier New', Courier, monospace;
-    --resplandor-radiactivo: 0 0 5px var(--color-energia-hesra);
-}
-
 * { box-sizing: border-box; }
 
 body, html {
-    margin: 0; padding: 0;
-    font-family: var(--fuente-terminal);
-    background-color: var(--color-gaia-superficie);
+    margin: 0; 
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f0f0f0;
     color: #333;
-    user-select: none; 
+    user-select: none;
     overflow: hidden;
-    height: 100vh; width: 100vw;
 }
 
-.texto-fluido-zarco {
-    color: var(--color-energia-hesra);
-    text-shadow: var(--resplandor-radiactivo);
-}
-
-.nodo-inactivo { display: none !important; }
-
-#capa-publicidad {
-    position: absolute; top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    pointer-events: none; z-index: 9999;
+/* Clases de utilidad global */
+.hacker-text {
+    color: #00FF41;
+    text-shadow: 0 0 5px #00FF41;
 }

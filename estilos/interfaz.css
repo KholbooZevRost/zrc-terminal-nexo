@@ -1,167 +1,144 @@
 /* =========================================
-   CONDUCTO VISUAL: INTERFAZ DE LA TERMINAL
+   MÓDULO 1: ESTADO SPLASH (PORTADA)
 ========================================= */
-
-#contenedor-maestro {
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-zarco-vacio);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+#pantalla-splash {
+    height: 100vh; width: 100vw;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background-color: #ffffff; position: relative;
+    transition: opacity 0.5s ease;
 }
 
-/* Efecto de escaneo (Degradación del puente cuántico) */
-#contenedor-maestro::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-    z-index: 2;
-    background-size: 100% 4px;
-    pointer-events: none;
+.marcador-borde {
+    position: absolute; width: 20px; height: 20px;
+    border: 2px solid #ccc; opacity: 0.5;
+    animation: flotar-borde 3s ease-in-out infinite alternate;
+}
+.top-left { top: 30px; left: 30px; border-right: none; border-bottom: none; }
+.top-right { top: 30px; right: 30px; border-left: none; border-bottom: none; animation-delay: 0.5s; }
+.bottom-left { bottom: 30px; left: 30px; border-right: none; border-top: none; animation-delay: 1s; }
+.bottom-right { bottom: 30px; right: 30px; border-left: none; border-top: none; animation-delay: 1.5s; }
+@keyframes flotar-borde {
+    0% { transform: translateY(0) scale(1); opacity: 0.3; }
+    100% { transform: translateY(-10px) scale(1.1); opacity: 0.8; }
 }
 
-/* Caja principal de los datos inyectados */
-#punto-inyeccion-nucleo {
-    z-index: 10;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+#contenedor-gato {
+    cursor: pointer; 
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: transform 0.2s ease-in-out;
 }
+#contenedor-gato:hover { transform: scale(1.1); }
 
-/* Estructura base para las ventanas del sistema */
-.ventana-sistema {
-    border: 2px solid var(--color-energia-hesra);
-    padding: 40px;
-    background-color: rgba(0, 20, 20, 0.9);
-    box-shadow: var(--resplandor-radiactivo);
-    text-align: center;
-    max-width: 800px;
-    width: 90%;
-    color: var(--color-gaia-superficie);
+.pixel-cat {
+    width: 10px; height: 10px; background: transparent;
+    box-shadow: 
+        20px 10px #000, 50px 10px #000,
+        20px 20px #000, 30px 20px #000, 40px 20px #000, 50px 20px #000,
+        10px 30px #000, 20px 30px #000, 30px 30px #000, 40px 30px #000, 50px 30px #000, 60px 30px #000,
+        10px 40px #000, 20px 40px #000, 30px 40px #000, 40px 40px #000, 50px 40px #000, 60px 40px #000,
+        20px 50px #000, 30px 50px #000, 40px 50px #000, 50px 50px #000;
+    margin-bottom: 70px; margin-right: 60px; position: relative; 
 }
+.pixel-cat::after {
+    content: ''; position: absolute; width: 10px; height: 10px;
+    box-shadow: 20px 30px #00FF41, 50px 30px #00FF41; 
+    animation: parpadeo-ojos 3s infinite; 
+}
+@keyframes parpadeo-ojos { 0%, 90%, 100% { opacity: 1; } 95% { opacity: 0; } }
+
+.apodo { font-weight: bold; letter-spacing: 2px; color: #333; margin-top: 0; }
+.instruccion { 
+    font-size: 0.9em; color: #777; margin-top: 50px; 
+    animation: parpadeo-suave 1.5s infinite; 
+}
+@keyframes parpadeo-suave { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
 /* =========================================
-   ELEMENTOS INTERACTIVOS
+   MÓDULO 2: ESTADO CARGA (NEPTUNE SYSTEMS)
 ========================================= */
-
-/* Botón de Interacción del Operador */
-.boton-terminal {
-    background-color: transparent;
-    color: var(--color-energia-hesra);
-    border: 1px solid var(--color-energia-hesra);
-    padding: 10px 20px;
-    font-family: var(--fuente-terminal);
-    font-size: 1.2rem;
-    cursor: pointer;
-    margin-top: 20px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-/* Reacción al pasar el ratón (Hover) */
-.boton-terminal:hover {
-    background-color: var(--color-energia-hesra);
-    color: var(--color-zarco-vacio);
-    box-shadow: var(--resplandor-radiactivo);
-}
-
-/* Animación de latido/parpadeo para llamar la atención */
-.parpadeo {
-    animation: parpadeo-animacion 1.5s infinite;
-}
-
-@keyframes parpadeo-animacion {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-/* =========================================
-   ENTORNO DE ESCRITORIO
-========================================= */
-
-/* Estructura del nuevo Escritorio Zarco */
-.contenedor-escritorio {
-    width: 95vw;
-    height: 90vh;
-    display: flex;
+#pantalla-carga {
+    height: 100vh; width: 100vw;
+    background-color: #000000; color: #00FF41;
+    display: none;
     flex-direction: column;
-    background-color: rgba(0, 20, 20, 0.9);
-    border: 2px solid var(--color-energia-hesra);
-    box-shadow: var(--resplandor-radiactivo);
-    overflow: hidden;
+    justify-content: center; align-items: center;
+    position: absolute; top: 0; left: 0; z-index: 999;
 }
 
-/* Barra Superior de Estado */
-.barra-estado {
-    width: 100%;
-    background-color: var(--color-energia-hesra);
-    color: var(--color-zarco-vacio);
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 20px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    border-bottom: 2px solid var(--color-gaia-superficie);
+#contenedor-hacker-load {
+    display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 5;
 }
 
-/* Área donde irán las carpetas en el futuro */
-.area-trabajo {
-    flex-grow: 1;
-    padding: 20px;
-    color: var(--color-gaia-superficie);
-    position: relative;
+.title-alien { 
+    letter-spacing: 2px; font-size: 0.9em; 
+    animation: monitorFlicker 0.1s infinite; margin-bottom: 20px;
 }
-/* =========================================
-   NODOS DE DATOS (ÍCONOS DEL ESCRITORIO)
-========================================= */
+@keyframes monitorFlicker { 0% { opacity: 1; } 50% { opacity: 0.9; } 100% { opacity: 1; } }
 
-.contenedor-iconos {
-    display: flex;
-    gap: 40px;
-    padding: 20px;
-    flex-wrap: wrap;
+#progress-bar-container {
+    width: 300px; height: 25px; border: 2px solid #00FF41;
+    margin: 20px 0; padding: 2px; display: flex; align-items: center;
+}
+#progress-bar-fill {
+    height: 100%; width: 0%; background-color: #00FF41;
+    box-shadow: 0 0 10px #00FF41;
 }
 
-.icono-sistema {
-    width: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s ease;
-}
-
-/* Reacción al pasar el escáner (ratón) por encima */
-.icono-sistema:hover {
-    transform: scale(1.1);
-}
-
-.icono-sistema:hover .icono-grafico {
-    color: var(--color-energia-hesra);
-    text-shadow: var(--resplandor-radiactivo);
-}
-
-.icono-sistema:hover .icono-texto {
-    background-color: var(--color-energia-hesra);
-    color: var(--color-zarco-vacio);
-}
-
-.icono-grafico {
-    font-size: 2.5rem;
-    margin-bottom: 8px;
-    color: var(--color-gaia-superficie);
-    font-weight: bold;
-}
-
-.icono-texto {
-    font-size: 0.85rem;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 4px 8px;
-    border: 1px solid var(--color-texto-muerto);
+#alien-symbols-log {
+    width: 300px; height: 60px;
+    margin-top: 10px; font-family: monospace;
+    font-size: 0.8em; color: rgba(0, 255, 65, 0.6);
+    overflow: hidden; text-align: left;
     word-wrap: break-word;
-    width: 100%;
+}
+
+.monitor-screen-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none; z-index: 100;
+}
+
+/* =========================================
+   MÓDULO 3: ESTADO ESCRITORIO
+========================================= */
+#escritorio { 
+    background-color: #008080; height: 100vh; width: 100vw; padding: 20px; 
+    position: relative; 
+    opacity: 0; 
+    transition: opacity 2s ease-in-out; 
+    pointer-events: none; 
+}
+
+#contenedor-iconos { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 30px; margin-top: 50px; }
+.nodo-carpeta { display: flex; flex-direction: column; align-items: center; color: white; cursor: pointer; text-align: center; }
+.nodo-carpeta span { margin-top: 10px; font-family: 'Courier New', monospace; font-size: 0.9em; padding: 2px 5px; }
+.nodo-carpeta:hover span { background-color: #000080; outline: 1px dotted white; }
+.icon-folder { width: 40px; height: 30px; background: #ffdb58; position: relative; border: 2px solid #000; box-shadow: 2px 2px 0 #000; }
+.icon-folder::before { content: ''; position: absolute; top: -10px; left: -2px; width: 15px; height: 10px; background: #ffdb58; border: 2px solid #000; border-bottom: none; }
+
+#ventana-mensaje {
+    width: 400px; background: #c0c0c0; color: #000;
+    border-top: 2px solid #fff; border-left: 2px solid #fff;
+    border-right: 2px solid #000; border-bottom: 2px solid #000;
+    box-shadow: 2px 2px 0px #808080 inset;
+    position: absolute; top: 20%; left: 30%; z-index: 10; display: none; 
+}
+.barra-titulo { background: #000080; color: white; padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+#cerrar-ventana { background: #c0c0c0; border-top: 1px solid #fff; border-left: 1px solid #fff; border-right: 1px solid #000; border-bottom: 1px solid #000; font-weight: bold; cursor: pointer; padding: 2px 6px; }
+#cerrar-ventana:active { border: inset 2px; }
+.cuerpo-ventana { padding: 20px; margin: 2px; }
+/* Animación para el doble parpadeo */
+@keyframes parpadeo-doble {
+    0%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+/* Clase que aplicaremos con JS para que parpadee dos veces */
+.blink-trigger::after {
+    animation: parpadeo-doble 0.6s ease-in-out !important;
 }

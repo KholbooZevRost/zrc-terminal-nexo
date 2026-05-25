@@ -3,20 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZRC_STATION // NEXO_G7</title>
-    
+    <title>ZRC_STATION_v1.0</title>
     <link rel="stylesheet" href="estilos/base.css">
     <link rel="stylesheet" href="estilos/interfaz.css">
 </head>
 <body>
 
-    <div id="capa-publicidad"></div>
+    <div id="pantalla-splash">
+        <div class="marcador-borde top-left"></div>
+        <div class="marcador-borde top-right"></div>
+        <div class="marcador-borde bottom-left"></div>
+        <div class="marcador-borde bottom-right"></div>
 
-    <main id="contenedor-maestro">
+        <div id="contenedor-gato">
+            <div class="pixel-cat"></div>
+            <p class="apodo">Z.KATT // KOBLET</p>
+        </div>
         
-        <div id="punto-inyeccion-nucleo"></div>
+        <p class="instruccion" id="btn-sincronizar">⎈ SINCRONIZAR ⎈</p>
+    </div>
 
-    </main>
+    <div id="pantalla-carga" style="display: none;">
+        <div id="contenedor-hacker-load">
+            
+            <pre class="hacker-text title-alien">
+   _   _ _____ _   _ ____  
+  | \ | | ____| | | |  _ \ 
+  |  \| |  _| | | | | | | |
+  | |\  | |___| |_| | |_| |
+  |_| \_|_____|\___/|____/ 
+  [NEPTUNE DIMENSIONAL SYSTEMS]
+  SESSION: v.1.0_ACTIVE
+            </pre>
+            
+            <div id="progress-bar-container">
+                <div id="progress-bar-fill"></div>
+            </div>
+
+            <div id="alien-symbols-log"></div>
+
+            <p class="pocentaje-retro hacker-text">>>> <span id="num-porcentaje">0</span>%</p>
+
+            <div class="monitor-screen-overlay"></div>
+        </div>
+    </div>
+
+    <div id="escritorio" style="display: none;">
+        
+        <div id="ventana-mensaje">
+            <div class="barra-titulo">
+                <span>MENSAJE_RESERVADO.txt</span>
+                <button id="cerrar-ventana">X</button>
+            </div>
+            <div class="cuerpo-ventana">
+                <p id="texto-autor"></p>
+            </div>
+        </div>
+
+        <div id="contenedor-iconos">
+            <div class="nodo-carpeta" id="n-0x1">
+                <div class="icon-folder"></div> 
+                <span>0x8892_AXL</span>
+            </div>
+            <div class="nodo-carpeta" id="n-0x2">
+                <div class="icon-folder"></div>
+                <span>77_BETA_PRG</span>
+            </div>
+            <div class="nodo-carpeta" id="n-0x3">
+                <div class="icon-folder"></div>
+                <span>NULL_VOID_00</span>
+            </div>
+        </div>
+    </div>
 
     <script src="logica/nucleo.js"></script>
 </body>
