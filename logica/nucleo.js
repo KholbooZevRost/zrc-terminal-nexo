@@ -53,8 +53,6 @@ gato.addEventListener('click', () => {
     sistema_iniciando = true;
 
     // --- PARCHE CONTRALÍNEAS INTEGRADO ---
-    // Fuerza al body a volverse negro absoluto al instante del clic.
-    // Esto oculta el color blanco por defecto del navegador y elimina el destello o línea blanca.
     document.body.style.backgroundColor = '#010401';
 
     pantalla_splash.style.opacity = '0';
@@ -122,7 +120,7 @@ function iniciar_secuencia_acoplamiento() {
                 const emblema = document.querySelector('.emblema-nexo');
                 emblema.style.transition = 'all 0.15s ease-in-out';
                 
-                // --- NUEVA CRONOLOGÍA DE TRIPLE PARPADEO CALIBRADO ---
+                // --- CRONOLOGÍA DE TRIPLE PARPADEO CALIBRADO ---
                 
                 // [PRIMER PARPADEO]: Normal y espaciado
                 setTimeout(() => {
@@ -148,13 +146,58 @@ function iniciar_secuencia_acoplamiento() {
                     emblema.style.transform = 'scale(1)';
                 }, 1450);
 
-                // [TERCER PARPADEO]: Detonación de fósforo blanco total
+                // [TERCER PARPADEO]: Sobrecarga total de fósforo blanco uniforme
                 setTimeout(() => {
-                    emblema.style.filter = 'brightness(10)';
-                    emblema.style.transform = 'scale(1.3)';
-                    
-                    monitor_crt.style.transition = 'background 0.1s ease-in-out';
+                    // Ocultamos las líneas físicas de barrido CRT para que no manchen el blanco puro
+                    const vidrio = document.querySelector('.vidrio-crt');
+                    if (vidrio) vidrio.style.opacity = '0';
+
+                    // Convertimos la caja del monitor en un bloque blanco puro instantáneo
+                    monitor_crt.style.transition = 'background 0.08s ease-in-out';
                     monitor_crt.style.background = '#ffffff';
+
+                    // Forzamos el emblema a fundirse en blanco absoluto
+                    emblema.style.filter = 'brightness(100)';
+                    emblema.style.transform = 'scale(1.2)';
+                    
+                    // Forzamos la cabecera del sistema a tornarse blanca y remover su sombra verde
+                    const etiqueta = document.querySelector('.etiqueta-sistema');
+                    if (etiqueta) {
+                        etiqueta.style.color = '#ffffff';
+                        etiqueta.style.textShadow = 'none';
+                    }
+
+                    // Forzamos el bloque de registros de consola y sus spans internos (errores) a blanco puro
+                    if (log_sistema_nexo) {
+                        log_sistema_nexo.style.color = '#ffffff';
+                        log_sistema_nexo.style.textShadow = 'none';
+                        log_sistema_nexo.style.borderColor = '#ffffff';
+                        log_sistema_nexo.querySelectorAll('span').forEach(span => {
+                            span.style.color = '#ffffff';
+                            span.style.textShadow = 'none';
+                            span.style.opacity = '1';
+                        });
+                    }
+
+                    // Ocultamos la rejilla pixelada de la barra de carga para un fundido limpio
+                    const contenedor_barra = document.getElementById('contenedor-barra-progreso');
+                    if (contenedor_barra) {
+                        contenedor_barra.style.borderColor = '#ffffff';
+                        contenedor_barra.style.backgroundColor = '#ffffff';
+                        contenedor_barra.style.boxShadow = 'none';
+                    }
+                    if (barra_progreso) {
+                        barra_progreso.style.backgroundColor = '#ffffff';
+                        barra_progreso.style.boxShadow = 'none';
+                        barra_progreso.style.backgroundImage = 'none'; 
+                    }
+
+                    // Forzamos el indicador de porcentaje final a blanco
+                    if (texto_porcentaje) {
+                        texto_porcentaje.parentElement.style.color = '#ffffff';
+                        texto_porcentaje.parentElement.style.textShadow = 'none';
+                    }
+
                 }, 2100);
 
                 // Desvanecimiento controlado desde el blanco absoluto hacia el escritorio
