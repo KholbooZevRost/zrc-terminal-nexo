@@ -122,14 +122,22 @@
     max-width: 400px;
     height: 110px; 
     color: rgba(51, 255, 102, 0.9); 
+    font-family: 'Courier New', monospace;
     font-size: 0.85em; 
     overflow: hidden; 
     margin-top: 5px; 
     text-align: left;
     line-height: 1.5;
-    /* PARCHE APLICADO: Se eliminó la línea discontinua que causaba el artefacto blanco */
-    padding-top: 12px;
     text-shadow: 0 0 2px rgba(51, 255, 102, 0.5);
+    padding-top: 6px; 
+
+    /* LA GUILLOTINA LÁSER: Corta físicamente el renderizado a partir de los 5px superiores.
+       Elimina cualquier rastro de resplandor o sombra verde fantasma del text-shadow. */
+    clip-path: inset(5px 0px 0px 0px);
+
+    /* Máscara lineal calibrada para desvanecer suavemente los caracteres justo en el corte */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 5px, black 15px, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 5px, black 15px, black 100%);
 }
 
 .porcentaje-sistema { 

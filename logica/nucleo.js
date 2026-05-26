@@ -29,7 +29,7 @@ const sentencias_espanol = [
     "EXTRAYENDO REGISTROS HISTÓRICOS DEL SUB-NEXO KOBLET...",
     "PROCESANDO FLUJO DE DATOS MULTIVERSAL ... INTEGRIDAD AL 94%",
     "ALINEANDO REJILLA MAGNÉTICA DEL MONITOR DE TRANSMISIÓN...",
-    "CONECTANDO WITH SERVIDOR REMOTO: REALIDAD_PARALELA_BETA..."
+    "CONECTANDO CON SERVIDOR REMOTO: REALIDAD_PARALELA_BETA..."
 ];
 
 function obtenerDatosCorruptos() {
@@ -68,9 +68,9 @@ function iniciar_secuencia_acoplamiento() {
     let progreso = 0;
     let error_provocado = false;
     let error_resuelto = false;
-    let bucle_logs_activo = false; 
-    
-    log_sistema_nexo.innerHTML = '> ENLACE INTERCEPTADO EN EL UMBRAL DIMENSIONAL <span id="cursor-analogico">_</span>'; 
+    let bucle_logs_activo = false;
+   
+    log_sistema_nexo.innerHTML = '> ENLACE INTERCEPTADO EN EL UMBRAL DIMENSIONAL <span id="cursor-analogico">_</span>';
     const monitor_crt = document.querySelector('.contenedor-terminal-crt');
 
     let ciclos_parpadeo = 0;
@@ -85,20 +85,29 @@ function iniciar_secuencia_acoplamiento() {
             clearInterval(secuencia_cursor);
             log_sistema_nexo.innerHTML = '> INICIALIZANDO APILAMIENTO DE PAQUETES DE S.O. VANGUARDIA...<br>';
             bucle_logs_activo = true;
-            
+           
             procesarLluviaDeCodigos();
             ejecutarProgresoBarra();
         }
     }, 200);
 
-    // 1. CONTROL DE LA BARRA DE PROGRESO
+    // 1. CONTROL DE LA BARRA DE PROGRESO (CON FÍSICA DE TIRONES ASÍNCRONOS)
     function ejecutarProgresoBarra() {
         const ciclo_carga = setInterval(() => {
             if (error_provocado && !error_resuelto) return;
 
-            progreso += Math.floor(Math.random() * 3) + 1;
+            // Algoritmo aleatorio para simular lectura irregular de disco rígido
+            let dado_avance = Math.random();
+            if (dado_avance > 0.82) {
+                progreso += Math.floor(Math.random() * 8) + 4; // Brinco grande repentino
+            } else if (dado_avance > 0.40) {
+                progreso += Math.floor(Math.random() * 2) + 1; // Avance corto regular
+            } else {
+                progreso += 0; // El porcentaje se congela imitando carga densa
+            }
+
             if (progreso > 100) progreso = 100;
-            
+           
             texto_porcentaje.innerText = progreso;
             barra_progreso.style.width = progreso + "%";
 
@@ -109,106 +118,63 @@ function iniciar_secuencia_acoplamiento() {
 
             if (progreso >= 100) {
                 clearInterval(ciclo_carga);
-                bucle_logs_activo = false; 
-                
+                bucle_logs_activo = false;
+               
                 monitor_crt.style.transform = 'translate(0, 0) skew(0deg)';
                 monitor_crt.style.filter = 'none';
 
-                log_sistema_nexo.innerHTML += "<br><span style='color: #ffffff; font-weight: bold; text-shadow: 0 0 8px #33ff66;'>> [ ENLACE CON INTERFAZ VANGUARDIA COMPLETADO CON ÉXITO ]</span>";
+                // CONFIGURACIÓN FINAL: Texto pegado de inmediato, tono hueso (#d1d1d1) amigable y sin text-shadow
+                log_sistema_nexo.innerHTML += "<span style='color: #d1d1d1; font-weight: bold; text-shadow: none;'>> [ ENLACE CON INTERFAZ VANGUARDIA COMPLETADO CON ÉXITO ]</span>";
                 log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
 
                 const emblema = document.querySelector('.emblema-nexo');
-                emblema.style.transition = 'all 0.15s ease-in-out';
-                
-                // --- CRONOLOGÍA DE TRIPLE PARPADEO CALIBRADO ---
-                
-                // [PRIMER PARPADEO]: Normal y espaciado
+               
+                // Transición mecánica espaciada para emular la inercia de un motor
+                emblema.style.transition = 'all 0.3s ease-in-out';
+               
+                // --- CRONOLOGÍA DETALLADA: EFECTO DE ENCENDIDO DE MOTOR ---
+               
+                // ESTADO 1: Tenue (Primer impulso de energía analógica)
                 setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 15px #33ff66) brightness(1.8)';
-                    emblema.style.transform = 'scale(1.06)';
+                    emblema.style.filter = 'drop-shadow(0 0 10px #33ff66) brightness(1.2)';
+                    emblema.style.transform = 'scale(1.03)';
                 }, 400);
 
-                // Apagado del primer parpadeo
+                // Pausa mecánica intermedia 1
                 setTimeout(() => {
                     emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
                     emblema.style.transform = 'scale(1)';
-                }, 600);
+                }, 700);
 
-                // [SEGUNDO PARPADEO]: Espera prolongada y brilla más fuerte
+                // ESTADO 2: Fuerte (Carga magnética y estabilización)
                 setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 35px #33ff66) brightness(3)';
-                    emblema.style.transform = 'scale(1.15)';
+                    emblema.style.filter = 'drop-shadow(0 0 25px #33ff66) brightness(1.8)';
+                    emblema.style.transform = 'scale(1.08)';
                 }, 1200);
 
-                // Apagado del segundo parpadeo
+                // Pausa mecánica intermedia 2
                 setTimeout(() => {
                     emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
                     emblema.style.transform = 'scale(1)';
-                }, 1450);
+                }, 1500);
 
-                // [TERCER PARPADEO]: Sobrecarga total de fósforo blanco uniforme
+                // ESTADO 3: Máximo (Sobrecarga e ignición total del S.O. Vanguardia)
                 setTimeout(() => {
-                    // Ocultamos las líneas físicas de barrido CRT para que no manchen el blanco puro
-                    const vidrio = document.querySelector('.vidrio-crt');
-                    if (vidrio) vidrio.style.opacity = '0';
+                    emblema.style.filter = 'drop-shadow(0 0 40px #33ff66) brightness(2.5)';
+                    emblema.style.transform = 'scale(1.15)';
+                }, 2200);
 
-                    // Convertimos la caja del monitor en un bloque blanco puro instantáneo
-                    monitor_crt.style.transition = 'background 0.08s ease-in-out';
-                    monitor_crt.style.background = '#ffffff';
-
-                    // Forzamos el emblema a fundirse en blanco absoluto
-                    emblema.style.filter = 'brightness(100)';
-                    emblema.style.transform = 'scale(1.2)';
-                    
-                    // Forzamos la cabecera del sistema a tornarse blanca y remover su sombra verde
-                    const etiqueta = document.querySelector('.etiqueta-sistema');
-                    if (etiqueta) {
-                        etiqueta.style.color = '#ffffff';
-                        etiqueta.style.textShadow = 'none';
-                    }
-
-                    // Forzamos el bloque de registros de consola y sus spans internos (errores) a blanco puro
-                    if (log_sistema_nexo) {
-                        log_sistema_nexo.style.color = '#ffffff';
-                        log_sistema_nexo.style.textShadow = 'none';
-                        log_sistema_nexo.style.borderColor = '#ffffff';
-                        log_sistema_nexo.querySelectorAll('span').forEach(span => {
-                            span.style.color = '#ffffff';
-                            span.style.textShadow = 'none';
-                            span.style.opacity = '1';
-                        });
-                    }
-
-                    // Ocultamos la rejilla pixelada de la barra de carga para un fundido limpio
-                    const contenedor_barra = document.getElementById('contenedor-barra-progreso');
-                    if (contenedor_barra) {
-                        contenedor_barra.style.borderColor = '#ffffff';
-                        contenedor_barra.style.backgroundColor = '#ffffff';
-                        contenedor_barra.style.boxShadow = 'none';
-                    }
-                    if (barra_progreso) {
-                        barra_progreso.style.backgroundColor = '#ffffff';
-                        barra_progreso.style.boxShadow = 'none';
-                        barra_progreso.style.backgroundImage = 'none'; 
-                    }
-
-                    // Forzamos el indicador de porcentaje final a blanco
-                    if (texto_porcentaje) {
-                        texto_porcentaje.parentElement.style.color = '#ffffff';
-                        texto_porcentaje.parentElement.style.textShadow = 'none';
-                    }
-
-                }, 2100);
-
-                // Desvanecimiento controlado desde el blanco absoluto hacia el escritorio
+                // Desvanecimiento natural directo hacia el escritorio (Sin destello blanco)
                 setTimeout(() => {
+                    emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
+                    emblema.style.transform = 'scale(1)';
                     revelar_escritorio();
-                }, 2350); 
+                }, 2600);
             }
         }, 180);
     }
 
-    // 2. TORMENTA DE LOGS DINÁMICOS ASÍNCRONOS
+    // 2. TORMENTA DE LOGS DINÁMICOS ASÍNCRONOS (RITMO REAL COHETE/CONGELADO DE LINUX)
     function procesarLluviaDeCodigos() {
         if (!bucle_logs_activo) return;
         if (error_provocado && !error_resuelto) {
@@ -216,22 +182,26 @@ function iniciar_secuencia_acoplamiento() {
             return;
         }
 
-        let delay = 30; 
+        let delay = 20;
         let dados = Math.random();
         let string_inyectar = "";
 
-        if (dados > 0.90) {
+        if (dados > 0.88) {
+            // CUELLO DE BOTELLA: Pausa de procesamiento denso
             string_inyectar = `<span style="color: #33ff66;">> ${sentencias_espanol[Math.floor(Math.random() * sentencias_espanol.length)]}</span>`;
-            delay = 450;
-        } else if (dados > 0.65) {
-            string_inyectar = `<span style="opacity: 0.3;">DESCARGANDO: pkg/vanguardia-core-${fragmentos_binarios[Math.floor(Math.random() * fragmentos_binarios.length)]} [${obtenerDatosCorruptos()}]</span>`;
-            delay = 12;
-        } else if (dados > 0.40) {
-            string_inyectar = `<span style="opacity: 0.6;">M_DUMP [0x${Math.floor(Math.random()*16384).toString(16).toUpperCase()}]: ${obtenerDatosCorruptos()} ${obtenerDatosCorruptos()}</span>`;
-            delay = 80;
+            delay = Math.floor(Math.random() * 200) + 650; // Retraso de 650ms a 850ms
+        } else if (dados > 0.45) {
+            // VELOCIDAD COHETE: Lluvia violenta de paquetes binarios
+            string_inyectar = `<span style="opacity: 0.25;">DESCARGANDO: sys-kernel-vanguardia-${fragmentos_binarios[Math.floor(Math.random() * fragmentos_binarios.length)]} [${obtenerDatosCorruptos()}]</span>`;
+            delay = Math.floor(Math.random() * 6) + 4; // Ráfaga de 4ms a 10ms
+        } else if (dados > 0.20) {
+            // Volcados hexadecimales estándar
+            string_inyectar = `<span style="opacity: 0.55;">REG_DUMP [0x${Math.floor(Math.random()*16384).toString(16).toUpperCase()}]: ${obtenerDatosCorruptos()}</span>`;
+            delay = 60;
         } else {
-            string_inyectar = `<span style="opacity: 0.5;">> comp_node_status: ${obtenerDatosCorruptos()} ... OK</span>`;
-            delay = 40;
+            // Comandos rutinarios
+            string_inyectar = `<span style="opacity: 0.45;">> verificando_nodo_cuantico: ${obtenerDatosCorruptos()} ... OK</span>`;
+            delay = 120;
         }
 
         log_sistema_nexo.innerHTML += string_inyectar + "<br>";
@@ -240,49 +210,62 @@ function iniciar_secuencia_acoplamiento() {
         setTimeout(procesarLluviaDeCodigos, delay);
     }
 
-    // 3. SECUENCIA DEL ERROR
+    // 3. SECUENCIA DEL ERROR EN DOS ACTOS (MÁXIMA COHERENCIA Y TONO DESATURADO)
     function provocarFalloDimensional() {
-        monitor_crt.style.transform = "translate(7px, -5px) skew(4deg)";
-        monitor_crt.style.filter = "brightness(2) blur(1px)";
+        // [ACTO I]: Distorsión leve del monitor y textos en color rojo ladrillo opaco (#a84545) amigable
+        monitor_crt.style.transform = "translate(4px, -3px) skew(2.5deg)";
+        monitor_crt.style.filter = "brightness(1.5) blur(0.5px)";
         
-        log_sistema_nexo.innerHTML += `<br><span style="color: #ff3333; font-weight: bold; text-shadow: 0 0 8px #ff3333;">[ERROR_CRÍTICO]: ALINEACIÓN DE DISPOSITIVOS FALLIDA</span><br>`;
-        log_sistema_nexo.innerHTML += `<span style="color: #ff3333; opacity: 0.8;">[ALERTA]: ADVERTENCIA DE RUPTURA DE NEXO ENTRE UNIVERSOS (CÓDIGO_TRANS_0xFA)</span><br>`;
-        log_sistema_nexo.innerHTML += `<span style="color: #ff3333; opacity: 0.6;">> VOLCADO DE EMERGENCIA: ${obtenerDatosCorruptos()} ${obtenerDatosCorruptos()}</span><br>`;
+        log_sistema_nexo.innerHTML += `<br><span style="color: #a84545; font-weight: bold; text-shadow: 0 0 4px rgba(168, 69, 69, 0.5);">[ERROR_CRÍTICO]: DETECTADA ASINCRONÍA DE EVENTOS TEMPORALES EN KERNEL_ZRC</span><br>`;
+        log_sistema_nexo.innerHTML += `<span style="color: #a84545; opacity: 0.8; text-shadow: 0 0 2px rgba(168, 69, 69, 0.3);">[ALERTA]: INTENTANDO ENMASCARAR REGISTRO DE MEMORIA CORRUPTA... FALLIDO.</span><br>`;
         log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
 
+        // Amago de contención técnica (Falsa calma momentánea)
         setTimeout(() => {
-            log_sistema_nexo.innerHTML += `<span style="color: #ffffff;">> INTERCEPCIÓN DE CONTROL: APLICANDO PARCHE AL VUELO EN NÚCLEO...</span><br>`;
+            monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
+            monitor_crt.style.filter = "none";
+            log_sistema_nexo.innerHTML += `<span style="color: #ffffff; opacity: 0.7;">> INICIANDO AMORTIGUACIÓN ESTÁTICA... CONTROL PARCIAL RECOBRADO.</span><br>`;
             log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
-            monitor_crt.style.transform = "translate(-4px, 4px) skew(-2deg)";
-            
+
+            // [ACTO II]: Rechazo del parche inicial y colapso secundario violento
             setTimeout(() => {
-                monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
-                monitor_crt.style.filter = "none";
+                monitor_crt.style.transform = "translate(-7px, 6px) skew(-4.5deg)";
+                monitor_crt.style.filter = "brightness(2.0) blur(1px)";
                 
-                log_sistema_nexo.innerHTML += `<span style="color: #33ff66; font-weight: bold;">> [PARCHE APLICADO]: SECTORES CUÁNTICOS REDIRECCIONADOS CON ÉXITO. RESUELTO.</span><br>`;
-                log_sistema_nexo.innerHTML += `<span style="color: #33ff66; opacity: 0.7;">> REANUDANDO INSTALACIÓN DEL REPOSITORIO VANGUARDIA...</span><br><br>`;
+                log_sistema_nexo.innerHTML += `<span style="color: #a84545; font-weight: bold; text-shadow: 0 0 5px rgba(168, 69, 69, 0.6);">[FALLO DE MATRIZ]: RUPTURA INTERSECTORIAL FLUIDA EN EL SECTOR 0x00_NEXO</span><br>`;
+                log_sistema_nexo.innerHTML += `<span style="color: #a84545; opacity: 0.6; text-shadow: none;">> VOLCADO DE EMERGENCIA GENERAL: ${obtenerDatosCorruptos()} ${obtenerDatosCorruptos()}</span><br>`;
                 log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
-                
-                error_resuelto = true;
-            }, 900);
-        }, 800);
+
+                // Parche definitivo: Estabilización absoluta y regreso al verde místico
+                setTimeout(() => {
+                    monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
+                    monitor_crt.style.filter = "none";
+                    
+                    log_sistema_nexo.innerHTML += `<span style="color: #33ff66; font-weight: bold;">> [PARCHE APLICADO]: FORZANDO REDIRECCIÓN DE FLUJO DE QUARKS. PARCHE DEFINITIVO INSTALADO.</span><br>`;
+                    log_sistema_nexo.innerHTML += `<span style="color: #33ff66; opacity: 0.7;">> REANUDANDO INSTALACIÓN DEL REPOSITORIO VANGUARDIA...</span><br><br>`;
+                    log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
+                    
+                    error_resuelto = true; // Libera la barra de progreso
+                }, 900);
+
+            }, 450); // Duración de la falsa calma
+
+        }, 750); // Resistencia del Acto I antes de reaccionar
     }
 }
 
-// --- TRANSICIÓN SUAVE DESDE BLANCO ABSOLUTO AL ESCRITORIO ---
+// --- TRANSICIÓN DIRECTA ENLACE AL ESCRITORIO ---
 function revelar_escritorio() {
+    escritorio.style.display = 'block';
+    escritorio.style.opacity = '1';
+    escritorio.style.pointerEvents = 'auto';
+   
     pantalla_carga.style.transition = 'opacity 0.6s cubic-bezier(0.1, 0.8, 0.25, 1)';
     pantalla_carga.style.opacity = '0';
-    
+   
     setTimeout(() => {
         pantalla_carga.style.display = 'none';
-        escritorio.style.display = 'block';
-        
-        setTimeout(() => {
-            escritorio.style.opacity = '1';
-            escritorio.style.pointerEvents = 'auto';
-        }, 50);
-    }, 600); 
+    }, 600);
 }
 
 // --- VENTANA DE ESCRITORIO ---
@@ -290,7 +273,7 @@ escritorio.addEventListener('click', (e) => {
     if (e.target.id === 'escritorio') {
         if (ventana_mensaje.style.display !== 'block') {
             ventana_mensaje.style.display = 'block';
-            texto_autor.innerHTML = ''; 
+            texto_autor.innerHTML = '';
             maquina_escribir(0);
         }
     }
@@ -306,7 +289,7 @@ function maquina_escribir(indice) {
 
 if (cerrar_boton) {
     cerrar_boton.addEventListener('click', (e) => {
-        e.stopPropagation(); 
+        e.stopPropagation();
         ventana_mensaje.style.display = 'none';
     });
 }
