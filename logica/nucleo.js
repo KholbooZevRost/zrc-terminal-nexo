@@ -10,6 +10,7 @@ const ventana_mensaje = document.getElementById('ventana-mensaje');
 const cerrar_boton = document.getElementById('cerrar-ventana');
 const texto_autor = document.getElementById('texto-autor');
 const mensaje_alien = `[ INIT_BIO_SCAN_Z ]\n⏣ ⎈ ⍎ ⍕ ⍙ ⍚ ⍛ ⍜\nasdkjao4569g flakjfgi adsjfbas...\n> TRADUCCIÓN FALLIDA.\n> zrc_root: acceso_concedido.`;
+
 // --- MATRICES DE DATOS CAÓTICOS E INTERDIMENSIONALES ---
 const fragmentos_binarios = ["01101001", "10011110", "00001111", "11100001", "10101010", "01010101"];
 const bloques_unicode = ["⏣", "⎈", "⍎", "⍕", "⍙", "⍚", "⍛", "⍜", "░", "▒", "▓", "█", "ᛟ", "ᛖ", "ᚱ", "☣", "⚙", "⚡\uFE0E"];
@@ -26,6 +27,7 @@ const sentencias_espanol = [
     "ALINEANDO REJILLA MAGNÉTICA DEL MONITOR DE TRANSMISIÓN...",
     "CONECTANDO CON SERVIDOR REMOTO: REALIDAD_PARALELA_BETA..."
 ];
+
 function obtenerDatosCorruptos() {
     let bloque = "";
     const cantidad = Math.floor(Math.random() * 4) + 2;
@@ -38,6 +40,7 @@ function obtenerDatosCorruptos() {
     }
     return bloque;
 }
+
 // --- SECUENCIA DE INICIO ---
 let sistema_iniciando = false;
 gato.addEventListener('click', () => {
@@ -54,7 +57,8 @@ gato.addEventListener('click', () => {
         }, 10);
     }, 500);
 });
-// --- LÓGICA DE ARRANQUE "DENSE LINUX BOOT" ---
+
+// --- LÓGICA DE ARRANQUE ---
 function iniciar_secuencia_acoplamiento() {
     let progreso = 0;
     let error_provocado = false;
@@ -68,7 +72,6 @@ function iniciar_secuencia_acoplamiento() {
         if (cursor) {
             cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
         }
-        cycles_parpadeo = ciclos_parpadeo + 1;
         ciclos_parpadeo++;
         if (ciclos_parpadeo >= 6) {
             clearInterval(secuencia_cursor);
@@ -78,6 +81,7 @@ function iniciar_secuencia_acoplamiento() {
             ejecutarProgresoBarra();
         }
     }, 200);
+
     function ejecutarProgresoBarra() {
         const ciclo_carga = setInterval(() => {
             if (error_provocado && !error_resuelto) return;
@@ -115,6 +119,7 @@ function iniciar_secuencia_acoplamiento() {
             }
         }, 180);
     }
+
     function procesarLluviaDeCodigos() {
         if (!bucle_logs_activo) return;
         if (error_provocado && !error_resuelto) {
@@ -141,6 +146,7 @@ function iniciar_secuencia_acoplamiento() {
         log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
         setTimeout(procesarLluviaDeCodigos, delay);
     }
+
     function provocarFalloDimensional() {
         monitor_crt.style.transform = "translate(3px, -2px) skew(1.5deg)";
         monitor_crt.style.filter = "brightness(1.15) blur(0.3px)";
@@ -153,7 +159,6 @@ function iniciar_secuencia_acoplamiento() {
                 log_sistema_nexo.innerHTML += `<span class='log-defensa-verde'>> DEFENSA_NEXO: FORZANDO DESAPILAMIENTO DE PUNTEROS... HECHO</span><br>`;
                 log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
                 setTimeout(() => {
-                    // ELIMINADO: Ya no se altera monitor_crt para evitar el segundo salto físico
                     log_sistema_nexo.innerHTML += `<span class='log-error-rojo'>REG_DUMP: EAX=0x7F⏣FF EBX=0x00⚡\uFE0E2A ESP=0xFA☣BC // NEXO_FAULT</span><br>`;
                     log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
                     setTimeout(() => {
@@ -167,15 +172,16 @@ function iniciar_secuencia_acoplamiento() {
         }, 120); 
     }
 }
+
 function revelar_escritorio() {
     escritorio.style.display = 'block';
     escritorio.style.opacity = '1';
     escritorio.style.pointerEvents = 'auto';
-    pantaya_carga = pantalla_carga;
     pantalla_carga.style.transition = 'opacity 0.6s cubic-bezier(0.1, 0.8, 0.25, 1)';
     pantalla_carga.style.opacity = '0';
     setTimeout(() => { pantalla_carga.style.display = 'none'; }, 600);
 }
+
 escritorio.addEventListener('click', (e) => {
     if (e.target.id === 'escritorio') {
         if (ventana_mensaje.style.display !== 'block') {
@@ -185,6 +191,7 @@ escritorio.addEventListener('click', (e) => {
         }
     }
 });
+
 function maquina_escribir(indice) {
     if (indice < mensaje_alien.length) {
         let caracter = mensaje_alien.charAt(indice);
@@ -192,12 +199,14 @@ function maquina_escribir(indice) {
         setTimeout(() => maquina_escribir(indice + 1), 40);
     }
 }
+
 if (cerrar_boton) {
     cerrar_boton.addEventListener('click', (e) => {
         e.stopPropagation();
         ventana_mensaje.style.display = 'none';
     });
 }
+
 const boton_sincronizar = document.getElementById('btn-sincronizar');
 const ojos_gato = document.querySelector('.pixel-cat');
 if (boton_sincronizar) {
