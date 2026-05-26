@@ -1,5 +1,5 @@
 /* =========================================
-   MÓDULO 1: ESTADO SPLASH (INALTERADO)
+   MÓDULO 1: ESTADO SPLASH
 ========================================= */
 #pantalla-splash {
     height: 100dvh; width: 100vw;
@@ -26,16 +26,15 @@
 @keyframes entrecerrar-ojos { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.2); opacity: 1; } }
 .blink-trigger::before, .blink-trigger::after { animation: entrecerrar-ojos 0.6s ease-in-out !important; }
 .apodo { font-weight: bold; letter-spacing: 2px; color: #333; margin-top: 0; }
-.apodo { font-weight: bold; letter-spacing: 2px; color: #333; margin-top: 0; }
 .instruccion { font-size: 0.9em; color: #777; margin-top: 50px; animation: parpadeo-suave 1.5s infinite; }
 @keyframes parpadeo-suave { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
 /* =========================================
-   MÓDULO 2: ESTADO CARGA (S.O. VANGUARDIA - HARDWARE REAL)
+   MÓDULO 2: ESTADO CARGA (S.O. VANGUARDIA)
 ========================================= */
 #pantalla-carga {
     height: 100vh; width: 100vw;
-    background-color: #010401; color: #33ff66;
+    background-color: #010401; color: #33ff66; 
     display: none; flex-direction: column;
     justify-content: center; align-items: center;
     position: absolute; top: 0; left: 0; z-index: 999;
@@ -45,13 +44,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Pantalla Completa con Pulsación de Interferencia Orgánica */
 .contenedor-terminal-crt {
     width: 100vw; 
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    background: radial-gradient(circle, #0c2410 0%, #010502 85%);
+    background: radial-gradient(circle, #0c2410 0%, #010502 85%); 
     display: flex; flex-direction: column; 
     align-items: center;
     justify-content: center;
@@ -59,102 +57,40 @@
     animation: rafaga-interferencia 8s infinite steps(1);
 }
 
-/* Rediseño del Logo: Fósforo cargado */
-.emblema-nexo {
-    margin-bottom: 25px;
-    display: flex; justify-content: center; align-items: center;
-    filter: drop-shadow(0 0 6px rgba(51, 255, 102, 0.7));
-}
-.rombo-exterior {
-    width: 70px; height: 70px;
-    border: 2px solid #33ff66;
-    transform: rotate(45deg);
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
-}
-.rombo-interior {
-    width: 40px; height: 40px;
-    border: 1px solid #33ff66;
-    display: flex; justify-content: center; align-items: center;
-}
-.nucleo-simbolo {
-    transform: rotate(-45deg);
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #33ff66;
-    text-shadow: 0 0 5px #33ff66;
-}
+.emblema-nexo { margin-bottom: 25px; display: flex; justify-content: center; align-items: center; filter: drop-shadow(0 0 6px rgba(51, 255, 102, 0.7)); }
+.rombo-exterior { width: 70px; height: 70px; border: 2px solid #33ff66; transform: rotate(45deg); display: flex; justify-content: center; align-items: center; position: relative; }
+.rombo-interior { width: 40px; height: 40px; border: 1px solid #33ff66; display: flex; justify-content: center; align-items: center; }
+.nucleo-simbolo { transform: rotate(-45deg); font-size: 1.4em; font-weight: bold; color: #33ff66; text-shadow: 0 0 5px #33ff66; }
+.etiqueta-sistema { font-size: 1.2em; font-weight: bold; letter-spacing: 5px; text-align: center; margin-bottom: 25px; color: #33ff66; text-shadow: 0 0 4px rgba(51, 255, 102, 0.6), 0 0 12px rgba(51, 255, 102, 0.3); }
 
-/* Tipografía de Monitor Antiguo */
-.etiqueta-sistema { 
-    font-size: 1.2em;
-    font-weight: bold;
-    letter-spacing: 5px; 
-    text-align: center; 
-    margin-bottom: 25px;
-    color: #33ff66;
-    text-shadow: 0 0 4px rgba(51, 255, 102, 0.6), 0 0 12px rgba(51, 255, 102, 0.3);
-}
+#contenedor-barra-progreso { width: 85%; max-width: 400px; height: 20px; border: 2px solid #33ff66; background-color: rgba(0, 8, 2, 0.8); padding: 3px; margin-bottom: 15px; box-shadow: 0 0 8px rgba(51, 255, 102, 0.15); }
+#barra-progreso-carga { height: 100%; width: 0%; background-color: #33ff66; box-shadow: 0 0 6px #33ff66; background-image: linear-gradient(90deg, transparent 25%, #010502 25%, #010502 45%, transparent 45%); background-size: 14px 100%; }
 
-/* Estructura de la Barra de Carga */
-#contenedor-barra-progreso {
-    width: 85%; 
-    max-width: 400px; 
-    height: 20px; 
-    border: 2px solid #33ff66;
-    background-color: rgba(0, 8, 2, 0.8);
-    padding: 3px; 
-    margin-bottom: 15px;
-    box-shadow: 0 0 8px rgba(51, 255, 102, 0.15);
-}
-
-/* Llenado Granular Antiguo */
-#barra-progreso-carga { 
-    height: 100%; width: 0%; 
-    background-color: #33ff66; 
-    box-shadow: 0 0 6px #33ff66;
-    background-image: linear-gradient(90deg, transparent 25%, #010502 25%, #010502 45%, transparent 45%);
-    background-size: 14px 100%;
-}
-
-/* Área de Registros de Consola */
+/* Área de Registros de Consola: AJUSTADO PARA TENUE (NO TRASPARENTE) */
 #registro-nexo {
     width: 85%;
     max-width: 400px;
     height: 108px; 
-    color: rgba(51, 255, 102, 0.9); 
-    font-family: 'Courier New', monospace;
-    font-size: 0.85em; 
+    font-family: 'Courier New', 'Courier', monospace !important;
+    font-size: 1em; 
     overflow: hidden; 
     margin-top: 5px; 
     text-align: left;
-    line-height: 1.5;
-    text-shadow: 0 0 2px rgba(51, 255, 102, 0.5);
+    line-height: 1.4;
     padding-top: 6px; 
-
-    /* Máscara de desvanecimiento analógico */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0px, black 20px, black 100%);
-    mask-image: linear-gradient(to bottom, transparent 0px, black 20px, black 100%);
+    
+    /* MODIFICACIÓN: 
+       rgba(0,0,0,0.3) 0% = Empieza tenue (no transparente)
+       rgba(0,0,0,0.7) 20% = Se vuelve más tenue al subir
+       black 40% = Totalmente sólido a partir de la 3era línea
+    */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 20%, black 40%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 20%, black 40%);
 }
 
-.porcentaje-sistema { 
-    color: #33ff66; 
-    margin-top: 15px; 
-    font-weight: bold;
-    text-shadow: 0 0 4px #33ff66;
-}
+.porcentaje-sistema { color: #33ff66; margin-top: 15px; font-weight: bold; text-shadow: 0 0 4px #33ff66; }
+.vidrio-crt { position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(51, 255, 102, 0.03), transparent, rgba(0, 0, 0, 0.05)); background-size: 100% 4px, 6px 100%; pointer-events: none; z-index: 10; }
 
-/* Capa Física de Monitor (Scanlines estables) */
-.vidrio-crt {
-    position: absolute; top:0; left:0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                linear-gradient(90deg, rgba(51, 255, 102, 0.03), transparent, rgba(0, 0, 0, 0.05));
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none; 
-    z-index: 10;
-}
-
-/* Lógica de ráfagas cortas de interferencia */
 @keyframes rafaga-interferencia {
     0%, 94%, 97%, 100% { transform: translate(0, 0) scale(1) skew(0deg); filter: none; opacity: 1; }
     95% { transform: translate(4px, -2px) skew(2deg); filter: brightness(1.4) blur(0.5px); opacity: 0.95; }
@@ -164,7 +100,7 @@
 }
 
 /* =========================================
-   MÓDULO 3: ESCRITORIO (INALTERADO)
+   MÓDULO 3: ESCRITORIO
 ========================================= */
 #escritorio { background-color: #008080; height: 100vh; width: 100vw; padding: 20px; position: relative; opacity: 0; transition: opacity 2s ease-in-out; pointer-events: none; }
 #contenedor-iconos { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 30px; margin-top: 50px; }
@@ -180,36 +116,33 @@
 .cuerpo-ventana { padding: 20px; margin: 2px; }
 
 /* =========================================
-   MÓDULO 4: CLASES DINÁMICAS (OPTIMIZADO)
+   MÓDULO 4: REGLA DE UNIFICACIÓN ABSOLUTA
 ========================================= */
-.log-error-rojo {
-    color: #b83a3a !important;
-    font-weight: bold;
-    text-shadow: none; 
-}
-
-.log-defensa-verde {
+#registro-nexo,
+#registro-nexo span,
+.log-error-rojo,
+.log-defensa-verde,
+.log-exito-plomo,
+.log-error-rojo::before,
+.log-error-rojo::after {
     color: #33ff66 !important;
-    font-weight: bold;
-    text-shadow: none;
+    opacity: 0.95 !important;
+    font-family: 'Courier New', 'Courier', monospace !important;
+    font-weight: normal !important;
+    letter-spacing: 1px !important;
+    text-shadow: 
+        0 0 3px rgba(51, 255, 102, 0.8), 
+        0 0 10px rgba(51, 255, 102, 0.4), 
+        0 0 20px rgba(51, 255, 102, 0.2) !important;
 }
 
-.log-exito-plomo {
-    color: #a9a9a9 !important;
-    font-weight: bold;
-    text-shadow: none;
-}
-/* =========================================
-   NUEVO: MÓDULO DE ESTRÉS DE HARDWARE
-========================================= */
-.vibracion-frenetica {
-    animation: vibrar 0.1s infinite !important;
-    filter: brightness(1.4) contrast(1.2) !important;
-}
+.vibracion-frenetica { animation: vibrar 0.1s infinite !important; filter: brightness(1.4) contrast(1.2) !important; }
+@keyframes vibrar { 0% { transform: translate(2px, -2px); } 33% { transform: translate(-2px, 2px); } 66% { transform: translate(2px, 2px); } 100% { transform: translate(-2px, -2px); } }
 
-@keyframes vibrar {
-    0% { transform: translate(2px, -2px); }
-    33% { transform: translate(-2px, 2px); }
-    66% { transform: translate(2px, 2px); }
-    100% { transform: translate(-2px, -2px); }
-}
+/* GLITCH - SOLO PARA ERRORES */
+.log-error-rojo { position: relative; display: inline-block; animation: glitch-skew-error 3s infinite linear alternate-reverse; }
+.log-error-rojo::before { left: 2px; animation: glitch-anim-error 1.4s infinite linear alternate-reverse; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); }
+.log-error-rojo::after { left: -2px; animation: glitch-anim2-error 1.8s infinite linear alternate-reverse; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); }
+@keyframes glitch-anim-error { 0% { transform: translate(0); } 20% { transform: translate(-4px, 3px); } 40% { transform: translate(-3px, -3px); } 60% { transform: translate(4px, 2px); } 80% { transform: translate(3px, -4px); } 100% { transform: translate(0); } }
+@keyframes glitch-anim2-error { 0% { transform: translate(0); } 25% { transform: translate(3px, -3px); } 50% { transform: translate(-4px, 3px); } 75% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
+@keyframes glitch-skew-error { 0% { transform: skew(0deg); } 10% { transform: skew(6deg); } 20% { transform: skew(-6deg); } 100% { transform: skew(0deg); } }
