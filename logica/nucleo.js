@@ -59,7 +59,13 @@ gato.addEventListener('click', () => {
     setTimeout(() => {
         pantalla_splash.style.display = 'none';
         pantalla_carga.style.display = 'flex';
-        iniciar_secuencia_acoplamiento();
+        
+        // Efecto de encendido de monitor CRT (Fade-in suave)
+        setTimeout(() => {
+            pantalla_carga.style.opacity = '1';
+            iniciar_secuencia_acoplamiento();
+        }, 10);
+        
     }, 500);
 });
 
@@ -96,14 +102,13 @@ function iniciar_secuencia_acoplamiento() {
         const ciclo_carga = setInterval(() => {
             if (error_provocado && !error_resuelto) return;
 
-            // Algoritmo aleatorio para simular lectura irregular de disco rígido
             let dado_avance = Math.random();
             if (dado_avance > 0.82) {
-                progreso += Math.floor(Math.random() * 8) + 4; // Brinco grande repentino
+                progreso += Math.floor(Math.random() * 8) + 4; 
             } else if (dado_avance > 0.40) {
-                progreso += Math.floor(Math.random() * 2) + 1; // Avance corto regular
+                progreso += Math.floor(Math.random() * 2) + 1; 
             } else {
-                progreso += 0; // El porcentaje se congela imitando carga densa
+                progreso += 0; 
             }
 
             if (progreso > 100) progreso = 100;
@@ -120,63 +125,28 @@ function iniciar_secuencia_acoplamiento() {
                 clearInterval(ciclo_carga);
                 bucle_logs_activo = false;
                
-                // INTEGRACIÓN: Apagamos animaciones CSS y sacudidas para estabilizar la transición final
                 monitor_crt.style.transform = 'translate(0, 0) skew(0deg)';
                 monitor_crt.style.filter = 'none';
                 monitor_crt.style.animation = 'none';
 
-                // CORRECCIÓN VISUAL: Eliminados los corchetes por completo para mantener la cadena limpia y lineal
                 log_sistema_nexo.innerHTML += "<span class='log-exito-plomo'>> ENLACE CON INTERFAZ VANGUARDIA COMPLETADO CON ÉXITO</span>";
                 log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
 
                 const emblema = document.querySelector('.emblema-nexo');
-               
-                // Transición mecánica espaciada para emular la inercia de un motor
                 emblema.style.transition = 'all 0.3s ease-in-out';
                
                 // --- CRONOLOGÍA DETALLADA: EFECTO DE ENCENDIDO DE MOTOR ---
-               
-                // ESTADO 1: Tenue
-                setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 10px #33ff66) brightness(1.2)';
-                    emblema.style.transform = 'scale(1.03)';
-                }, 400);
-
-                // Pausa mecánica intermedia 1
-                setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
-                    emblema.style.transform = 'scale(1)';
-                }, 700);
-
-                // ESTADO 2: Fuerte
-                setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 25px #33ff66) brightness(1.8)';
-                    emblema.style.transform = 'scale(1.08)';
-                }, 1200);
-
-                // Pausa mecánica intermedia 2
-                setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
-                    emblema.style.transform = 'scale(1)';
-                }, 1500);
-
-                // ESTADO 3: Máximo
-                setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 40px #33ff66) brightness(2.5)';
-                    emblema.style.transform = 'scale(1.15)';
-                }, 2200);
-
-                // Desvanecimiento natural directo hacia el escritorio (Sin destello blanco)
-                setTimeout(() => {
-                    emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))';
-                    emblema.style.transform = 'scale(1)';
-                    revelar_escritorio();
-                }, 2600);
+                setTimeout(() => { emblema.style.filter = 'drop-shadow(0 0 10px #33ff66) brightness(1.2)'; emblema.style.transform = 'scale(1.03)'; }, 400);
+                setTimeout(() => { emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))'; emblema.style.transform = 'scale(1)'; }, 700);
+                setTimeout(() => { emblema.style.filter = 'drop-shadow(0 0 25px #33ff66) brightness(1.8)'; emblema.style.transform = 'scale(1.08)'; }, 1200);
+                setTimeout(() => { emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))'; emblema.style.transform = 'scale(1)'; }, 1500);
+                setTimeout(() => { emblema.style.filter = 'drop-shadow(0 0 40px #33ff66) brightness(2.5)'; emblema.style.transform = 'scale(1.15)'; }, 2200);
+                setTimeout(() => { emblema.style.filter = 'drop-shadow(0 0 6px rgba(51, 255, 102, 0.7))'; emblema.style.transform = 'scale(1)'; revelar_escritorio(); }, 2600);
             }
         }, 180);
     }
 
-    // 2. TORMENTA DE LOGS DINÁMICOS ASÍNCRONOS (RITMO REAL COHETE/CONGELADO DE LINUX)
+    // 2. TORMENTA DE LOGS DINÁMICOS ASÍNCRONOS
     function procesarLluviaDeCodigos() {
         if (!bucle_logs_activo) return;
         if (error_provocado && !error_resuelto) {
@@ -208,43 +178,52 @@ function iniciar_secuencia_acoplamiento() {
         setTimeout(procesarLluviaDeCodigos, delay);
     }
 
-    // 3. SECUENCIA REALISTA: INTERACCIONES LINEALES LIMPIAS (SIN SALTOS ADICIONALES NI PROCESOS EXCESIVOS)
+    // 3. COREOGRAFÍA DE INGENIERÍA DE BAJO NIVEL (GLITCH CLÁSICO DE MOVIMIENTO)
     function provocarFalloDimensional() {
-        // --- EVENTO ROJO 1: Pegado milimétricamente al flujo anterior (Removido el <br> inicial) ---
+        // --- PASO 1: GLITCH CLÁSICO (Desplazamiento lateral y centrado) ---
         monitor_crt.style.transform = "translate(3px, -2px) skew(1.5deg)";
         monitor_crt.style.filter = "brightness(1.15) blur(0.3px)";
-        log_sistema_nexo.innerHTML += `<span class='log-error-rojo'>[FALLO]: ASINCRONÍA DE EVENTOS EN KERNEL_ZRC</span><br>`;
-        log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
-
-        // --- RESPUESTA VERDE 1: El kernel responde y estabiliza ---
+        
         setTimeout(() => {
+            // Regreso al centro
             monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
             monitor_crt.style.filter = "none";
-            log_sistema_nexo.innerHTML += `<span class='log-defensa-verde'>> DEFENSA_NEXO: REENRUTANDO MEMORIA CACHÉ... OK</span><br>`;
+            
+            // Inyección del error
+            log_sistema_nexo.innerHTML += `<span class='log-error-rojo'>[KERNEL_PANIC]: STACK_OVERFLOW EN CORRECCIÓN DE DESCRIPTORES DE RED</span><br>`;
             log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
 
-            // --- RECAÍDA ROJA 2: Breve inestabilidad secundaria ---
+            // --- PASO 2: INTENTO DE ARREGLO HUMANO ---
             setTimeout(() => {
-                monitor_crt.style.transform = "translate(-3px, 2px) skew(-1deg)";
-                monitor_crt.style.filter = "brightness(1.15) blur(0.3px)";
-                log_sistema_nexo.innerHTML += `<span class='log-error-rojo'>[ALERTA]: SECTOR 0x00_NEXO INESTABLE</span><br>`;
+                log_sistema_nexo.innerHTML += `<span class='log-defensa-verde'>> DEFENSA_NEXO: FORZANDO DESAPILAMIENTO DE PUNTEROS... HECHO</span><br>`;
                 log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
 
-                // --- RESPUESTA VERDE ABSOLUTA: Parche definitivo de Vanguardia ---
+                // --- PASO 3: RECAÍDA ALIENÍGENA ---
                 setTimeout(() => {
-                    monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
-                    monitor_crt.style.filter = "none";
+                    // Desplazamiento contrario (Lado opuesto)
+                    monitor_crt.style.transform = "translate(-3px, 2px) skew(-1deg)";
+                    monitor_crt.style.filter = "brightness(1.15) blur(0.3px)";
                     
-                    log_sistema_nexo.innerHTML += `<span style="color: #33ff66; font-weight: bold;">> [PARCHE APLICADO]: FLUJO DE QUARKS ESTABILIZADO POR COMPLETO.</span><br>`;
-                    log_sistema_nexo.innerHTML += `<span style="color: #33ff66; opacity: 0.7;">> REANUDANDO INSTALACIÓN DEL REPOSITORIO VANGUARDIA...</span><br><br>`;
+                    log_sistema_nexo.innerHTML += `<span class='log-error-rojo'>REG_DUMP: EAX=0x7F⏣FF EBX=0x00⚡2A ESP=0xFA☣BC // NEXO_FAULT</span><br>`;
                     log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
-                    
-                    error_resuelto = true; // Libera la barra de progreso para seguir al 100%
-                }, 800);
 
-            }, 700);
+                    // --- PASO 4: RESOLUCIÓN ABSOLUTA ---
+                    setTimeout(() => {
+                        monitor_crt.style.transform = "translate(0, 0) skew(0deg)";
+                        monitor_crt.style.filter = "none";
+                        
+                        log_sistema_nexo.innerHTML += `<span style="color: #33ff66; font-weight: bold;">> SYS_MUTEX_LOCK: ⚙ ⎈ [EXCLUSIÓN_MUTUA_INYECTADA] ... MONITOR ESTABLE.</span><br>`;
+                        log_sistema_nexo.innerHTML += `<span style="color: #33ff66; opacity: 0.7;">> REANUDANDO INSTALACIÓN DEL REPOSITORIO VANGUARDIA...</span><br><br>`;
+                        log_sistema_nexo.scrollTop = log_sistema_nexo.scrollHeight;
+                        
+                        error_resuelto = true; 
+                    }, 1200); 
 
-        }, 700);
+                }, 800); 
+
+            }, 750); 
+
+        }, 120); 
     }
 }
 

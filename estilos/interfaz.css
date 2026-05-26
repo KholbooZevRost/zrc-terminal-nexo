@@ -26,6 +26,7 @@
 @keyframes entrecerrar-ojos { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.2); opacity: 1; } }
 .blink-trigger::before, .blink-trigger::after { animation: entrecerrar-ojos 0.6s ease-in-out !important; }
 .apodo { font-weight: bold; letter-spacing: 2px; color: #333; margin-top: 0; }
+.apodo { font-weight: bold; letter-spacing: 2px; color: #333; margin-top: 0; }
 .instruccion { font-size: 0.9em; color: #777; margin-top: 50px; animation: parpadeo-suave 1.5s infinite; }
 @keyframes parpadeo-suave { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
@@ -182,7 +183,7 @@
    MÓDULO 4: CLASES DINÁMICAS (OPTIMIZADO)
 ========================================= */
 .log-error-rojo {
-    color: #b83a3a !important; /* Rojo carmesí mate y apagado de la simulación, sin brillos molestos */
+    color: #b83a3a !important;
     font-weight: bold;
     text-shadow: none; 
 }
@@ -197,4 +198,18 @@
     color: #a9a9a9 !important;
     font-weight: bold;
     text-shadow: none;
+}
+/* =========================================
+   NUEVO: MÓDULO DE ESTRÉS DE HARDWARE
+========================================= */
+.vibracion-frenetica {
+    animation: vibrar 0.1s infinite !important;
+    filter: brightness(1.4) contrast(1.2) !important;
+}
+
+@keyframes vibrar {
+    0% { transform: translate(2px, -2px); }
+    33% { transform: translate(-2px, 2px); }
+    66% { transform: translate(2px, 2px); }
+    100% { transform: translate(-2px, -2px); }
 }
